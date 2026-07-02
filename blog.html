@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>SANTO-RYU | Blog &amp; Hành trình</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-primary: #eef5f7;
+            --bg-secondary: #f7fbfc;
+            --text-primary: #173040;
+            --text-secondary: #5d7182;
+            --accent: #0f766e;
+            --accent-light: #2dd4bf;
+            --border-color: #d7e4ea;
+            --card-bg: rgba(248, 252, 253, 0.86);
+            --shadow: 0 16px 45px rgba(15, 23, 42, 0.08);
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #07111f;
+            --bg-secondary: #101928;
+            --text-primary: #e8f1ff;
+            --text-secondary: #aebdca;
+            --accent: #5eead4;
+            --accent-light: #2dd4bf;
+            --border-color: #334155;
+            --card-bg: rgba(11, 19, 38, 0.72);
+            --shadow: 0 16px 45px rgba(2, 6, 23, 0.36);
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+            padding-top: 64px;
+            line-height: 1.75;
+            font-size: 16px;
+            letter-spacing: 0.01em;
+        }
+
+        h1, h2, h3, h4 { letter-spacing: -0.02em; }
+
+        .hero-title {
+            font-size: clamp(2.3rem, 4vw, 3.3rem);
+            line-height: 1.05;
+        }
+
+        .section-copy {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(15, 118, 110, 0.12);
+            box-shadow: var(--shadow);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        background-color 0.4s ease;
+            transform: translateY(0);
+            will-change: transform, box-shadow;
+            animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .glass-card:nth-of-type(2) { animation-delay: 0.12s; }
+        .glass-card:nth-of-type(3) { animation-delay: 0.24s; }
+        .glass-card:nth-of-type(4) { animation-delay: 0.36s; }
+        .glass-card:nth-of-type(5) { animation-delay: 0.48s; }
+        
+        [data-theme="dark"] .glass-card {
+            border: 1px solid rgba(94, 234, 212, 0.12);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--accent-light);
+            box-shadow: 0 18px 45px rgba(45, 212, 191, 0.16);
+        }
+        
+        .topo-grain {
+            background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+            opacity: 0.035;
+            pointer-events: none;
+        }
+        
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 218, 243, 0.15);
+        }
+        
+        .tab-active {
+            border-bottom: 2px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover .material-symbols-outlined {
+            transform: translateY(-2px);
+        }
+        
+        .theme-icon-dark { display: none; }
+        [data-theme="dark"] .theme-icon-light { display: none; }
+        [data-theme="dark"] .theme-icon-dark { display: block; }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        [data-theme="dark"] .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .timeline-line {
+            background: linear-gradient(to bottom, var(--accent-light), transparent);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(24px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-up {
+            animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .fade-in-up.delay-200 { animation-delay: 0.2s; }
+        .fade-in-up.delay-400 { animation-delay: 0.4s; }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-light); }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 bg-[var(--bg-secondary)]/80 backdrop-blur-xl border-b border-[var(--border-color)]/50 shadow-sm transition-colors duration-300">
+        <div class="flex justify-between items-center h-16 px-6 md:px-16 max-w-7xl mx-auto">
+                        <a href="index.html" class="flex items-center gap-3 group">
+    <div class="relative">
+        <svg class="w-10 h-10" viewBox="0 0 48 48" fill="none">
+            <!-- Vòng tròn ngoài với hiệu ứng dash -->
+            <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+            <!-- Vòng tròn thứ 2 -->
+            <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+            <!-- Vòng tròn thứ 3 -->
+            <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+            <!-- Chấm trung tâm -->
+            <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+            <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+            <!-- Đường kẻ ngang -->
+            <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+            <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+            <!-- Đường kẻ dọc -->
+            <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+            <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+        </svg>
+        <!-- Glow effect -->
+        <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    </div>
+    <div class="flex flex-col leading-tight">
+        <span class="font-headline-lg text-2xl md:text-3xl font-bold tracking-tight">
+            <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                giang
+                <!-- Underline glow -->
+                <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+            </span>
+            <span class="text-[var(--accent-light)] group-hover:text-[var(--accent)] transition-colors duration-300 text-3xl md:text-4xl">.</span>
+        </span>
+        <span class="font-label-sm text-[9px] text-[var(--text-secondary)] tracking-[0.3em] uppercase group-hover:text-[var(--accent)] transition-colors duration-300 mt-0.5">network & security</span>
+    </div>
+</a>
+            <nav class="hidden md:flex items-center gap-8 font-body-md text-body-md">
+                <a href="index.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                    Home
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="blog.html" class="text-[var(--accent)] font-bold border-b-2 border-[var(--accent)] py-1 transition-all duration-300">Blog</a>
+                <a href="tags.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                    Tags
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="archives.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                    Archives
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="about.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                    About
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-[var(--border-color)]/30 transition-all duration-300" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined theme-icon-light text-[var(--text-secondary)]">light_mode</span>
+                    <span class="material-symbols-outlined theme-icon-dark text-[var(--text-secondary)]">dark_mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="min-h-screen">
+        <!-- Hero Section -->
+        <header class="fade-in-up relative pt-16 pb-12 md:pt-20 md:pb-16 overflow-hidden">
+            <div class="relative z-10 px-6 md:px-16 max-w-7xl mx-auto">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-[var(--accent-light)] text-sm">explore</span>
+                    <span class="font-label-sm text-label-sm text-[var(--accent)] uppercase tracking-widest">Trace the Horizon</span>
+                </div>
+                <h1 class="hero-title text-[var(--accent)] mb-6 max-w-3xl">Lưu trữ kỹ thuật &amp; Hành trình khám phá không gian mạng.</h1>
+                <p class="section-copy text-[var(--text-secondary)] max-w-2xl">
+                    Nơi tổng hợp các bài nghiên cứu về Cyber Security, điều tra số (Forensics) và những mảnh ghép trên hành trình sự nghiệp tại các tổ chức quốc tế.
+                </p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="fade-in-up delay-400 px-6 md:px-16 max-w-7xl mx-auto pb-16 md:pb-24">
+            <!-- Tab Navigation -->
+            <div class="fade-in-up delay-200 flex items-center gap-6 md:gap-12 border-b border-[var(--border-color)]/50 mb-8 md:mb-12 overflow-x-auto">
+                <button class="py-4 font-headline-lg-mobile text-headline-lg-mobile transition-all duration-300 tab-active flex items-center gap-2 md:gap-3 whitespace-nowrap" id="tab-blog" onclick="switchTab('blog')">
+                    <span class="material-symbols-outlined">article</span>
+                    Bài viết
+                </button>
+                <button class="py-4 font-headline-lg-mobile text-headline-lg-mobile transition-all duration-300 text-[var(--text-secondary)] hover:text-[var(--accent)] flex items-center gap-2 md:gap-3 whitespace-nowrap" id="tab-journey" onclick="switchTab('journey')">
+                    <span class="material-symbols-outlined">route</span>
+                    Hành trình
+                </button>
+            </div>
+
+            <!-- Section: Blog Posts -->
+            <div class="block" id="section-blog">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Main Feed -->
+                    <div class="lg:col-span-8 space-y-6">
+                        <!-- Featured Card -->
+                        <article class="glass-card group p-6 md:p-8 rounded-xl overflow-hidden">
+                            <div class="topo-grain absolute inset-0"></div>
+                            <div class="flex flex-col md:flex-row gap-6 relative z-10">
+                                <div class="w-full md:w-1/3 aspect-[4/3] rounded-lg overflow-hidden border border-[var(--border-color)]/30">
+                                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYQgmnXNa6xitTXSuhly9yay2IWpMtDDwgvOuXCgnujmT_ZT7QV_ubWb0dCQa92FmQQT3Jc3enNYOXCGYC5oCRWtsfsyoQvThlaiFQlvkgMDVbhm_LecGeizdcHoNz09KhN-xLnAtDI-cqL5uDlTiO_D5q51y8xBLrD_puuuoDKKfMmCRw9WQOIpMibyEiR9-V66g68Wd8fWZkDk4oqpHdh0KESXsEakpMMKkHJHvcBvbidP91vgnu7w" alt="Cyber Forensics"/>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex flex-wrap items-center gap-2 md:gap-4 mb-4">
+                                        <span class="font-label-sm text-label-sm text-[var(--accent-light)] border border-[var(--accent-light)]/30 px-2 py-0.5 rounded">Cyber Forensics</span>
+                                        <span class="font-label-sm text-label-sm text-[var(--text-secondary)] flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 15 phút đọc
+                                        </span>
+                                    </div>
+                                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)] mb-4 group-hover:text-[var(--accent-light)] transition-colors">
+                                        Phân tích mã độc nâng cao: Truy vết dấu chân số của APT28 trong các chiến dịch gần đây
+                                    </h2>
+                                    <p class="font-body-md text-body-md text-[var(--text-secondary)] mb-6 line-clamp-3">
+                                        Bài viết này đi sâu vào quy trình phân tích kỹ thuật các mẫu malware được sử dụng bởi nhóm Fancy Bear. Chúng ta sẽ khám phá cách họ bypass các hệ thống EDR hiện đại và kỹ thuật ẩn mình trong bộ nhớ kernel...
+                                    </p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-[var(--bg-secondary)]/50 rounded-full font-label-sm text-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">#MalwareAnalysis</span>
+                                        <span class="px-3 py-1 bg-[var(--bg-secondary)]/50 rounded-full font-label-sm text-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">#ReverseEngineering</span>
+                                        <span class="px-3 py-1 bg-[var(--bg-secondary)]/50 rounded-full font-label-sm text-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">#Forensics</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 2 -->
+                        <article class="glass-card group p-6 md:p-8 rounded-xl overflow-hidden">
+                            <div class="topo-grain absolute inset-0"></div>
+                            <div class="relative z-10">
+                                <div class="font-label-sm text-label-sm text-[var(--text-secondary)] mb-3 flex flex-wrap justify-between items-center gap-2">
+                                    <span>24 THÁNG 10, 2023</span>
+                                    <span class="flex items-center gap-1 text-[var(--accent)]"><span class="material-symbols-outlined text-[14px]">map</span> Lat: 45.7640, Lon: 4.8357</span>
+                                </div>
+                                <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)] mb-4">
+                                    Zero-Trust Architecture: Từ lý thuyết đến triển khai thực tế trong hạ tầng doanh nghiệp lớn
+                                </h2>
+                                <p class="font-body-md text-body-md text-[var(--text-secondary)] mb-6 leading-relaxed">
+                                    Đừng bao giờ tin tưởng, luôn luôn xác thực. Bài viết chia sẻ kinh nghiệm thiết kế hệ thống Identity-aware Proxy và Micro-segmentation để giảm thiểu rủi ro tấn công nội bộ (Insider threats).
+                                </p>
+                                <div class="flex flex-wrap justify-between items-center gap-4">
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-[var(--bg-secondary)]/50 rounded-full font-label-sm text-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">#Networking</span>
+                                        <span class="px-3 py-1 bg-[var(--bg-secondary)]/50 rounded-full font-label-sm text-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">#ZeroTrust</span>
+                                    </div>
+                                    <a class="font-label-sm text-label-sm text-[var(--accent)] flex items-center gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                                        XEM CHI TIẾT <span class="material-symbols-outlined">arrow_forward</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 3 -->
+                        <article class="glass-card group p-6 md:p-8 rounded-xl overflow-hidden">
+                            <div class="topo-grain absolute inset-0"></div>
+                            <div class="relative z-10">
+                                <div class="font-label-sm text-label-sm text-[var(--text-secondary)] mb-3 flex flex-wrap justify-between items-center gap-2">
+                                    <span>08 THÁNG 09, 2023</span>
+                                    <span class="flex items-center gap-1 text-[var(--accent)]"><span class="material-symbols-outlined text-[14px]">terminal</span> SSH://192.168.1.1</span>
+                                </div>
+                                <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)] mb-4">
+                                    Xây dựng công cụ OSINT tùy chỉnh bằng Python: Thu thập dữ liệu từ các diễn đàn Dark Web
+                                </h2>
+                                <p class="font-body-md text-body-md text-[var(--text-secondary)] mb-6 leading-relaxed">
+                                    Hướng dẫn từng bước phát triển một crawler sử dụng Tor proxy để tự động hóa việc thu thập các tệp dump dữ liệu bị rò rỉ và phân tích xu hướng tấn công Ransomware.
+                                </p>
+                                <div class="flex flex-wrap justify-between items-center gap-4">
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-[var(--bg-secondary)]/50 rounded-full font-label-sm text-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">#OSINT</span>
+                                        <span class="px-3 py-1 bg-[var(--bg-secondary)]/50 rounded-full font-label-sm text-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">#Python</span>
+                                    </div>
+                                    <a class="font-label-sm text-label-sm text-[var(--accent)] flex items-center gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                                        XEM CHI TIẾT <span class="material-symbols-outlined">arrow_forward</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="lg:col-span-4 space-y-6">
+                        <div class="glass-card p-6 rounded-xl">
+                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)] mb-6">Tìm kiếm</h3>
+                            <div class="relative group">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)] group-focus-within:text-[var(--accent)] transition-colors">search</span>
+                                <input class="w-full bg-transparent border-0 border-b border-[var(--border-color)] focus:ring-0 focus:border-[var(--accent)] pl-10 text-[var(--text-primary)] py-3 transition-all font-body-md" placeholder="Tọa độ, từ khóa, tag..." type="text"/>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-xl">
+                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)] mb-6">Chủ đề hot</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <button class="px-4 py-2 bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] hover:border-[var(--accent)] transition-colors rounded-lg font-label-sm text-label-sm text-[var(--text-primary)]">#Forensics (12)</button>
+                                <button class="px-4 py-2 bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] hover:border-[var(--accent)] transition-colors rounded-lg font-label-sm text-label-sm text-[var(--text-primary)]">#IncidentResponse (8)</button>
+                                <button class="px-4 py-2 bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] hover:border-[var(--accent)] transition-colors rounded-lg font-label-sm text-label-sm text-[var(--text-primary)]">#CloudSecurity (5)</button>
+                                <button class="px-4 py-2 bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] hover:border-[var(--accent)] transition-colors rounded-lg font-label-sm text-label-sm text-[var(--text-primary)]">#Cryptography (7)</button>
+                                <button class="px-4 py-2 bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] hover:border-[var(--accent)] transition-colors rounded-lg font-label-sm text-label-sm text-[var(--text-primary)]">#RedTeaming (9)</button>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-xl bg-gradient-to-br from-[var(--bg-secondary)]/50 to-[var(--accent)]/5">
+                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)] mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined">newspaper</span> Newsletter
+                            </h3>
+                            <p class="font-body-md text-body-md text-[var(--text-secondary)] mb-6">Nhận thông báo về các writeup mới nhất qua email.</p>
+                            <input class="w-full bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg p-3 mb-4 focus:ring-1 focus:ring-[var(--accent)] focus:border-[var(--accent)] outline-none text-[var(--text-primary)] font-body-md" placeholder="Email của bạn" type="email"/>
+                            <button class="w-full bg-[var(--accent)] text-white py-3 rounded-lg font-label-sm text-label-sm font-bold hover:brightness-110 transition-all active:scale-95">ĐĂNG KÝ NGAY</button>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+
+            <!-- Section: Journey Timeline -->
+            <div class="hidden max-w-4xl mx-auto" id="section-journey">
+                <div class="relative py-8">
+                    <!-- Vertical Line -->
+                    <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px timeline-line -translate-x-1/2 hidden md:block"></div>
+
+                    <!-- Item 1 -->
+                    <div class="relative mb-16 md:mb-20 md:flex md:justify-between items-center w-full">
+                        <div class="md:w-5/12 order-1"></div>
+                        <div class="absolute left-0 md:left-1/2 -translate-x-1/2 z-20">
+                            <div class="w-10 h-10 rounded-full bg-[var(--bg-secondary)] border-2 border-[var(--accent)] flex items-center justify-center glow-cyan">
+                                <span class="material-symbols-outlined text-[var(--accent)] text-sm">hub</span>
+                            </div>
+                        </div>
+                        <div class="md:w-5/12 glass-card p-6 md:p-8 rounded-xl order-2 relative group hover:-translate-y-1 transition-transform">
+                            <div class="topo-grain absolute inset-0"></div>
+                            <div class="relative z-10">
+                                <span class="font-label-sm text-label-sm text-[var(--accent)] mb-2 block">2023 - HIỆN TẠI</span>
+                                <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)] mb-2">CloudFlare</h3>
+                                <p class="font-label-sm text-label-sm text-[var(--text-secondary)] mb-4 uppercase tracking-tighter">Security Operations Intern • London, UK</p>
+                                <p class="font-body-md text-body-md text-[var(--text-secondary)] leading-relaxed">
+                                    Tham gia vào đội ngũ ứng cứu sự cố toàn cầu, trực tiếp giám sát các đợt tấn công DDoS quy mô lớn và tối ưu hóa hệ thống tường lửa WAF. Triển khai các chính sách bảo mật dựa trên mô hình Zero-trust cho các hệ thống biên.
+                                </p>
+                                <div class="mt-4 flex gap-2">
+                                    <span class="material-symbols-outlined text-[var(--accent-light)] text-[16px]">verified</span>
+                                    <span class="font-label-sm text-label-sm text-[var(--text-secondary)] italic">Kỹ năng: Cloud Security, DDoS Mitigation, Edge Computing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="relative mb-16 md:mb-20 md:flex md:justify-between items-center w-full">
+                        <div class="md:w-5/12 glass-card p-6 md:p-8 rounded-xl order-1 relative group hover:-translate-y-1 transition-transform">
+                            <div class="topo-grain absolute inset-0"></div>
+                            <div class="relative z-10">
+                                <span class="font-label-sm text-label-sm text-[var(--accent)] mb-2 block">2022 - 2023</span>
+                                <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)] mb-2">Interpol</h3>
+                                <p class="font-label-sm text-label-sm text-[var(--text-secondary)] mb-4 uppercase tracking-tighter">Cybercrime Research Fellow • Lyon, France</p>
+                                <p class="font-body-md text-body-md text-[var(--text-secondary)] leading-relaxed">
+                                    Hỗ trợ phân tích dữ liệu điều tra tội phạm công nghệ cao xuyên biên giới. Xây dựng các mô hình học máy để phát hiện các giao dịch tiền điện tử đáng ngờ liên quan đến mạng lưới tống tiền.
+                                </p>
+                                <div class="mt-4 flex gap-2">
+                                    <span class="material-symbols-outlined text-[var(--accent-light)] text-[16px]">verified</span>
+                                    <span class="font-label-sm text-label-sm text-[var(--text-secondary)] italic">Kỹ năng: OSINT, Blockchain Forensics, Data Analysis</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 -translate-x-1/2 z-20">
+                            <div class="w-10 h-10 rounded-full bg-[var(--bg-secondary)] border-2 border-[var(--accent-light)] flex items-center justify-center">
+                                <span class="material-symbols-outlined text-[var(--accent-light)] text-sm">policy</span>
+                            </div>
+                        </div>
+                        <div class="md:w-5/12 order-2"></div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="relative mb-16 md:mb-20 md:flex md:justify-between items-center w-full">
+                        <div class="md:w-5/12 order-1"></div>
+                        <div class="absolute left-0 md:left-1/2 -translate-x-1/2 z-20">
+                            <div class="w-10 h-10 rounded-full bg-[var(--bg-secondary)] border-2 border-[var(--accent)] flex items-center justify-center glow-cyan">
+                                <span class="material-symbols-outlined text-[var(--accent)] text-sm">school</span>
+                            </div>
+                        </div>
+                        <div class="md:w-5/12 glass-card p-6 md:p-8 rounded-xl order-2 relative group hover:-translate-y-1 transition-transform">
+                            <div class="topo-grain absolute inset-0"></div>
+                            <div class="relative z-10">
+                                <span class="font-label-sm text-label-sm text-[var(--accent)] mb-2 block">2021 - 2022</span>
+                                <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)] mb-2">Google Cyber Security Professional</h3>
+                                <p class="font-label-sm text-label-sm text-[var(--text-secondary)] mb-4 uppercase tracking-tighter">Professional Certificate</p>
+                                <p class="font-body-md text-body-md text-[var(--text-secondary)] leading-relaxed">
+                                    Hoàn thành khóa học chuyên sâu về mạng, hệ điều hành Linux, quản lý rủi ro và các kỹ thuật phòng thủ chủ động bằng Python và SQL. Đạt chứng chỉ loại xuất sắc.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="mt-8 md:mt-12">
+                    <div class="font-label-sm text-label-sm text-[var(--accent-light)] mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined">public</span> GLOBAL TRACKING MAP
+                    </div>
+                    <div class="w-full h-64 md:h-80 rounded-2xl overflow-hidden border border-[var(--border-color)]/30 relative">
+                        <div class="bg-cover bg-center w-full h-full grayscale opacity-60" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCXL3HFv-8Xo38ksnS1sNUbOpz47xu48alTKahT29hoIriiEBrukHMwEqhZpAiCXlzQ5WSlDI-Npln9bOIlIRZ02fHt7mLnBi8rRdBSJYIO8JWo-0GQ1muF4WONvbwbhBJ3FzYdk_fmvQOLrDzDfUxnanWjwiRqBHzNRvHkD4e1I3DB27HwdV3nLerbcddFwVCzh4hoPjXzuvfwWvZZ1y6s3yOOu9_r-SDWS5GrEMdpeUK0goJS6fz-PQ')"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-transparent to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--bg-secondary)] border-t border-[var(--border-color)]/50 transition-colors duration-300">
+        <div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-16 py-12 gap-6 max-w-7xl mx-auto">
+            <div class="text-center md:text-left">
+                <div class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)] mb-2">SANTO-RYU</div>
+                <p class="font-label-sm text-label-sm text-[var(--text-secondary)]">© 2024 SANTO-RYU. Trace the horizon.</p>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-6 md:gap-8">
+                <a class="font-label-sm text-label-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-300 relative group" href="#">
+                    GitHub
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a class="font-label-sm text-label-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-300 relative group" href="#">
+                    Twitter
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a class="font-label-sm text-label-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-300 relative group" href="#">
+                    Email
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a class="font-label-sm text-label-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-300 relative group" href="#">
+                    RSS
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <div class="text-[10px] font-label-sm text-[var(--text-secondary)] uppercase">Network Status</div>
+                    <div class="flex items-center gap-2 text-[var(--accent)]">
+                        <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
+                        <span class="text-xs font-bold uppercase tracking-widest">Encrypted Connection</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed top-0 left-0 w-[500px] h-[500px] bg-[var(--accent)]/5 rounded-full blur-[100px] pointer-events-none -translate-x-1/2 -translate-y-1/2 z-0 opacity-0 transition-opacity duration-1000" id="cursor-glow"></div>
+
+    <script>
+        // Theme toggle
+        const toggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        
+        toggleBtn.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+
+        // Tab switching
+        function switchTab(tab) {
+            const blogSection = document.getElementById('section-blog');
+            const journeySection = document.getElementById('section-journey');
+            const blogTab = document.getElementById('tab-blog');
+            const journeyTab = document.getElementById('tab-journey');
+
+            if (tab === 'blog') {
+                blogSection.classList.remove('hidden');
+                journeySection.classList.add('hidden');
+                blogTab.classList.add('tab-active');
+                blogTab.classList.remove('text-[var(--text-secondary)]');
+                journeyTab.classList.remove('tab-active');
+                journeyTab.classList.add('text-[var(--text-secondary)]');
+            } else {
+                blogSection.classList.add('hidden');
+                journeySection.classList.remove('hidden');
+                journeyTab.classList.add('tab-active');
+                journeyTab.classList.remove('text-[var(--text-secondary)]');
+                blogTab.classList.remove('tab-active');
+                blogTab.classList.add('text-[var(--text-secondary)]');
+            }
+        }
+
+        // Cursor glow
+        const glow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.opacity = '1';
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+    </script>
+</body>
+</html>
