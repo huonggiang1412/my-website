@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Archives | SANTO-RYU - Trace the Horizon</title>
+    <title>Archives | Huong Giang - Network & Security</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -11,17 +11,18 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --bg-primary: #eef5f7;
+            --bg-primary: #ecf7f9;
             --bg-secondary: #f7fbfc;
-            --bg-card: rgba(248, 252, 253, 0.86);
-            --text-primary: #173040;
-            --text-secondary: #5d7182;
-            --accent: #0f766e;
+            --text-primary: #0b2a35;
+            --text-secondary: #3d5a6b;
+            --text-muted: #7a9aaa;
+            --accent: #0d9488;
             --accent-light: #2dd4bf;
-            --accent-glow: rgba(45, 212, 191, 0.18);
-            --border-color: #d7e4ea;
-            --shadow: 0 16px 45px rgba(15, 23, 42, 0.08);
-            --surface-dim: #dfeafe;
+            --accent-glow: rgba(13, 148, 136, 0.20);
+            --border-color: #c8dce4;
+            --card-bg: rgba(255, 255, 255, 0.88);
+            --shadow: 0 16px 45px rgba(13, 148, 136, 0.10);
+            --surface-dim: #dce8ec;
             --surface-low: #eff4ff;
             --surface-container: #f1f3f9;
             --surface-high: #ebeef5;
@@ -29,16 +30,17 @@
         }
         
         [data-theme="dark"] {
-            --bg-primary: #07111f;
-            --bg-secondary: #101928;
-            --bg-card: rgba(11, 19, 38, 0.72);
-            --text-primary: #e8f1ff;
-            --text-secondary: #aebdca;
+            --bg-primary: #08141e;
+            --bg-secondary: #0f1d2a;
+            --text-primary: #d6edf5;
+            --text-secondary: #9ab9c9;
+            --text-muted: #5d8395;
             --accent: #5eead4;
             --accent-light: #2dd4bf;
-            --accent-glow: rgba(94, 234, 212, 0.18);
-            --border-color: #334155;
-            --shadow: 0 16px 45px rgba(2, 6, 23, 0.36);
+            --accent-glow: rgba(94, 234, 212, 0.16);
+            --border-color: #2a4250;
+            --card-bg: rgba(15, 29, 42, 0.88);
+            --shadow: 0 16px 45px rgba(0, 0, 0, 0.40);
             --surface-dim: #0b1326;
             --surface-low: #131b2e;
             --surface-container: #171f33;
@@ -61,6 +63,22 @@
             letter-spacing: 0.01em;
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 0% 20%, rgba(13, 148, 136, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 100% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        [data-theme="dark"] body::before {
+            background:
+                radial-gradient(circle at 0% 20%, rgba(94, 234, 212, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 100% 80%, rgba(251, 191, 36, 0.04) 0%, transparent 50%);
+        }
+
         h1, h2, h3, h4 { letter-spacing: -0.02em; }
 
         .hero-title {
@@ -81,10 +99,10 @@
         }
         
         .glass-panel {
-            background: var(--bg-card);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(15, 118, 110, 0.12);
+            border: 1px solid rgba(13, 148, 136, 0.10);
             box-shadow: var(--shadow);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                         box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -95,7 +113,7 @@
         }
         
         [data-theme="dark"] .glass-panel {
-            border: 1px solid rgba(94, 234, 212, 0.12);
+            border: 1px solid rgba(94, 234, 212, 0.10);
         }
         
         .glass-panel:hover {
@@ -104,17 +122,8 @@
             box-shadow: 0 18px 45px var(--accent-glow);
         }
 
-        .hero-visual img {
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s ease;
-        }
-
-        .hero-visual:hover img {
-            transform: scale(1.03);
-            filter: grayscale(0);
-        }
-        
         .topo-grain {
-            background-image: url("https://www.transparenttextures.com/patterns/pinstriped-suit.png");
+            background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
             opacity: 0.035;
             pointer-events: none;
         }
@@ -140,12 +149,10 @@
             padding: 8px;
             border-radius: 50%;
             transition: background 0.3s;
+            color: var(--text-secondary);
         }
         .theme-toggle:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-        [data-theme="dark"] .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(13, 148, 136, 0.10);
         }
         
         .activity-bar {
@@ -201,6 +208,26 @@
 
         .fade-in-up.delay-200 { animation-delay: 0.2s; }
         .fade-in-up.delay-400 { animation-delay: 0.4s; }
+
+        /* ===== HEADER ===== */
+        .logo-text {
+            font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        .logo-dot {
+            font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+        }
+        .logo-sub {
+            font-size: clamp(0.5rem, 0.6vw, 0.65rem);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .logo-svg {
+            width: clamp(2rem, 2.4vw, 2.5rem);
+            height: clamp(2rem, 2.4vw, 2.5rem);
+        }
         
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-primary); }
@@ -209,88 +236,91 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- ===== HEADER ===== -->
     <header class="fixed top-0 w-full z-50 bg-[var(--bg-secondary)]/80 backdrop-blur-xl border-b border-[var(--border-color)]/50 shadow-sm transition-colors duration-300">
-        <div class="flex justify-between items-center h-16 px-6 md:px-16 max-w-7xl mx-auto">
-                        <a href="index.html" class="flex items-center gap-3 group">
-    <div class="relative">
-        <svg class="w-10 h-10" viewBox="0 0 48 48" fill="none">
-            <!-- Vòng tròn ngoài với hiệu ứng dash -->
-            <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
-            <!-- Vòng tròn thứ 2 -->
-            <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
-            <!-- Vòng tròn thứ 3 -->
-            <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
-            <!-- Chấm trung tâm -->
-            <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
-            <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
-            <!-- Đường kẻ ngang -->
-            <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-            <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-            <!-- Đường kẻ dọc -->
-            <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-            <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-        </svg>
-        <!-- Glow effect -->
-        <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-    </div>
-    <div class="flex flex-col leading-tight">
-        <span class="font-headline-lg text-2xl md:text-3xl font-bold tracking-tight">
-            <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
-                giang
-                <!-- Underline glow -->
-                <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
-            </span>
-            <span class="text-[var(--accent-light)] group-hover:text-[var(--accent)] transition-colors duration-300 text-3xl md:text-4xl">.</span>
-        </span>
-        <span class="font-label-sm text-[9px] text-[var(--text-secondary)] tracking-[0.3em] uppercase group-hover:text-[var(--accent)] transition-colors duration-300 mt-0.5">network & security</span>
-    </div>
-</a>
-            <nav class="hidden md:flex items-center gap-8 font-body-md text-body-md">
-                <a href="index.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+        <div class="flex justify-between items-center h-14 md:h-16 px-4 md:px-16 max-w-7xl mx-auto">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+                <div class="relative flex-shrink-0">
+                    <svg class="logo-svg" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+                        <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+                        <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+                        <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    </svg>
+                    <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="logo-text font-bold tracking-tight">
+                        <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                            giang
+                            <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+                        </span>
+                        <span class="logo-dot text-[var(--accent-light)] group-hover:text-[var(--accent)] transition-colors duration-300">.</span>
+                    </span>
+                    <span class="logo-sub">network & security</span>
+                </div>
+            </a>
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium">
+                <a href="index.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">
                     Home
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span>
                 </a>
-                <a href="blog.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                <a href="blog.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">
                     Blog
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span>
                 </a>
-                <a href="tags.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                <a href="tags.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">
                     Tags
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span>
                 </a>
-                <a href="archives.html" class="text-[var(--accent)] font-bold border-b-2 border-[var(--accent)] py-1 transition-all duration-300">Archives</a>
-                <a href="about.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                <a href="archives.html" class="text-[var(--accent)] font-bold border-b-2 border-[var(--accent)] py-1">Archives</a>
+                <a href="about.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">
                     About
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span>
                 </a>
             </nav>
-            <div class="flex items-center gap-3">
-                <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-[var(--border-color)]/30 transition-all duration-300" aria-label="Toggle theme">
-                    <span class="material-symbols-outlined theme-icon-light text-[var(--text-secondary)]">light_mode</span>
-                    <span class="material-symbols-outlined theme-icon-dark text-[var(--text-secondary)]">dark_mode</span>
+
+            <!-- Right -->
+            <div class="flex items-center gap-2 md:gap-3">
+                <button id="theme-toggle" class="theme-toggle p-1.5 md:p-2 rounded-full hover:bg-[var(--border-color)]/30 transition-all" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined theme-icon-light text-[var(--text-secondary)] text-xl md:text-2xl">light_mode</span>
+                    <span class="material-symbols-outlined theme-icon-dark text-[var(--text-secondary)] text-xl md:text-2xl">dark_mode</span>
                 </button>
             </div>
         </div>
     </header>
 
-<br>
-    <!-- Main Content -->
-    <main class="min-h-screen pb-16 md:pb-24 px-6 md:px-16 max-w-7xl mx-auto relative">
+    <!-- ===== MAIN ===== -->
+    <main class="min-h-screen pb-16 md:pb-24 px-4 md:px-16 max-w-7xl mx-auto relative">
         <div class="topo-grain absolute inset-0 z-0"></div>
 
         <!-- Header Section -->
-        <header class="relative z-10 mb-16 md:mb-20 fade-in-up">
-            <div class="flex items-center gap-3 mb-2">
-                <span class="font-label-sm text-label-sm text-[var(--accent)] uppercase tracking-widest flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">history</span> ARCHIVE_LOG_TRANSCRIPT
-                </span>
-            </div>
-            <h1 class="text-[clamp(2.4rem,4.2vw,3.4rem)] font-black tracking-[-0.03em] text-[var(--text-primary)] mb-5 leading-[0.95]">Lưu Trữ Nghiên Cứu</h1>
-            <p class="text-[clamp(1rem,1.15vw,1.1rem)] text-[var(--text-secondary)] max-w-2xl leading-8 tracking-[0.002em]">
-                Truy vết các bước tiến kỹ thuật, ghi chép điều tra và các phân tích hệ thống qua thời gian. Một bản đồ số của những khám phá đã qua.
-            </p>
-        </header>
+  <header class="relative z-10 mb-16 md:mb-20 fade-in-up">
+    <br>
+    <div class="flex items-center gap-3 mb-2">
+        <span class="font-label-sm text-label-sm text-[var(--accent)] uppercase tracking-widest flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">terminal</span> PROJECT_LOGS
+        </span>
+    </div>
+
+    <h1 class="hero-title font-black tracking-[-0.03em] text-[var(--text-primary)] mb-5 leading-[0.95]">
+        Project Execution Logs
+    </h1>
+
+    <p class="section-copy text-[var(--text-secondary)] max-w-2xl leading-8">
+        Ghi lại quá trình xây dựng, thử nghiệm và hoàn thiện các dự án. 
+        Mỗi sản phẩm phản ánh cách mình tư duy, giải quyết vấn đề và phát triển kỹ năng qua từng giai đoạn.
+    </p>
+</header>
 
         <!-- Archive List Section -->
         <section class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -302,7 +332,7 @@
                         <ul class="space-y-3">
                             <li><a href="#" class="font-body-md text-[var(--text-primary)] font-bold flex items-center justify-between year-link">2026 <span class="text-[10px] opacity-40">2 POSTS</span></a></li>
                             <li><a href="#" class="font-body-md text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between year-link">2025 <span class="text-[10px] opacity-40">2 POSTS</span></a></li>
-                            <li><a href="#" class="font-body-md text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between year-link">2024 <span class="text-[10px] opacity-40">1 POST</span></a></li>
+                            <li><a href="#" class="font-body-md text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between year-link">2024 <span class="text-[10px] opacity-40">3 POSTS</span></a></li>
                         </ul>
                     </div>
                     
@@ -319,7 +349,7 @@
 
             <!-- Timeline List -->
             <div class="lg:col-span-9 space-y-12 relative timeline-line pl-6">
-                <!-- Month Block - December 2024 -->
+                <!-- 2026 -->
                 <div class="relative">
                     <div class="absolute left-[-30px] top-1.5 w-3 h-3 rounded-full bg-[var(--accent)] ring-4 ring-[var(--accent)]/20"></div>
                     <h2 class="font-display-lg text-2xl text-[var(--text-primary)] mb-6 flex items-baseline gap-3">
@@ -329,40 +359,31 @@
                     <div class="space-y-0">
                         <div class="archive-item flex flex-col md:flex-row md:items-center justify-between py-3 gap-2">
                             <div class="flex items-center gap-4">
-                                <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">12.24</span>
-                                <a href="#" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Phân tích giao thức truyền tin ẩn danh trong mạng lưới mesh</a>
+                                <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">03.10</span>
+                                <a href="#" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Xây dựng mô hình mạng VLAN &amp; OSPF trên GNS3</a>
                             </div>
                             <div class="flex gap-2">
-                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">SECURITY</span>
+                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">GNS3</span>
                             </div>
                         </div>
                         <div class="archive-item flex flex-col md:flex-row md:items-center justify-between py-3 gap-2">
                             <div class="flex items-center gap-4">
-                                <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">12.18</span>
-                                <a href="#" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Kiến trúc Zero-Knowledge Proofs cho định danh phi tập trung</a>
+                                <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">02.15</span>
+                                <a href="#" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Cấu hình pfSense Firewall &amp; IDS/IPS Suricata</a>
                             </div>
                             <div class="flex gap-2">
-                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">IDENTITY</span>
-                            </div>
-                        </div>
-                        <div class="archive-item flex flex-col md:flex-row md:items-center justify-between py-3 gap-2">
-                            <div class="flex items-center gap-4">
-                                <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">12.05</span>
-                                <a href="#" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Trace-Log #41: Các vector tấn công vào hệ thống AI cục bộ</a>
-                            </div>
-                            <div class="flex gap-2">
-                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">AI_SAFETY</span>
+                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">pfSense</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Month Block - November 2024 -->
+                <!-- 2025 -->
                 <div class="relative">
                     <div class="absolute left-[-30px] top-1.5 w-3 h-3 rounded-full bg-[var(--border-color)] ring-4 ring-transparent"></div>
                     <h2 class="font-display-lg text-2xl text-[var(--text-primary)] mb-6 flex items-baseline gap-3">
                         Năm 2025
-                        <span class="font-label-sm text-label-sm text-[var(--text-secondary)] font-normal">03 PROJECTS</span>
+                        <span class="font-label-sm text-label-sm text-[var(--text-secondary)] font-normal">02 PROJECTS</span>
                     </h2>
                     <div class="space-y-0">
                         <div class="archive-item flex flex-col md:flex-row md:items-center justify-between py-3 gap-2">
@@ -386,89 +407,155 @@
                     </div>
                 </div>
 
-                <!-- Month Block - October 2024 -->
+                <!-- 2024 -->
                 <div class="relative">
                     <div class="absolute left-[-30px] top-1.5 w-3 h-3 rounded-full bg-[var(--border-color)] ring-4 ring-transparent"></div>
                     <h2 class="font-display-lg text-2xl text-[var(--text-primary)] mb-6 flex items-baseline gap-3">
                         Năm 2024
-                        <span class="font-label-sm text-label-sm text-[var(--text-secondary)] font-normal">02 PROJECTS</span>
+                        <span class="font-label-sm text-label-sm text-[var(--text-secondary)] font-normal">03 PROJECTS</span>
                     </h2>
                     <div class="space-y-0">
                         <div class="archive-item flex flex-col md:flex-row md:items-center justify-between py-3 gap-2">
                             <div class="flex items-center gap-4">
-                                <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">10.29</span>
-                                <a href="#" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Báo cáo đặc biệt: Lỗ hổng trong vi kiến trúc CPU thế hệ mới</a>
+                                <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">11.05</span>
+                                <a href="blog2.html" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Tại sao nên học mạng? – Lý do từ một người đang trên hành trình</a>
                             </div>
                             <div class="flex gap-2">
-                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">HARDWARE</span>
+                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">#Network</span>
                             </div>
                         </div>
                         <div class="archive-item flex flex-col md:flex-row md:items-center justify-between py-3 gap-2">
                             <div class="flex items-center gap-4">
                                 <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">10.15</span>
-                                <a href="#" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Hành trình kỹ thuật số: Xây dựng OS tùy chỉnh từ con số không</a>
+                                <a href="blog1.html" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Nhiệm kỳ thành viên Ban Chấp hành Khoa KTMT&amp;ĐT</a>
                             </div>
                             <div class="flex gap-2">
-                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">OS_DEV</span>
+                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">#BCH</span>
                             </div>
                         </div>
                         <div class="archive-item flex flex-col md:flex-row md:items-center justify-between py-3 gap-2">
                             <div class="flex items-center gap-4">
-                                <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">10.08</span>
-                                <a href="#" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Phân tích mã nguồn mở: Backdoor trong thư viện phổ biến</a>
+                                <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">08.20</span>
+                                <a href="#" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Google Cybersecurity Professional – Chứng chỉ chuyên môn</a>
                             </div>
                             <div class="flex gap-2">
-                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">MALWARE</span>
-                            </div>
-                        </div>
-                        <div class="archive-item flex flex-col md:flex-row md:items-center justify-between py-3 gap-2">
-                            <div class="flex items-center gap-4">
-                                <span class="font-label-sm text-xs text-[var(--text-secondary)] opacity-40">10.01</span>
-                                <a href="#" class="font-body-md text-body-md text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">Zero-Day Exploit: Phân tích lỗ hổng trong Windows Kernel</a>
-                            </div>
-                            <div class="flex gap-2">
-                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">EXPLOIT</span>
+                                <span class="font-label-sm text-[10px] px-2 py-0.5 border border-[var(--border-color)] rounded bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">#Cert</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </section>
-
     </main>
 
-    <!-- Footer -->
-    <footer class="w-full py-12 md:py-16 bg-[var(--bg-secondary)] border-t border-[var(--border-color)]/50 transition-colors duration-300">
-        <div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-16 gap-6 max-w-7xl mx-auto">
-            <div class="text-center md:text-left">
-                <div class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)] mb-2">SANTO-RYU</div>
-                <div class="font-label-sm text-label-sm text-[var(--text-secondary)]">© 2024 SANTO-RYU. Trace the horizon.</div>
-            </div>
-            <div class="flex flex-wrap justify-center gap-6 md:gap-8">
-                <a class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-label-sm text-label-sm opacity-80 hover:opacity-100 relative group" href="#">
-                    GitHub
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-label-sm text-label-sm opacity-80 hover:opacity-100 relative group" href="#">
-                    Twitter
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-label-sm text-label-sm opacity-80 hover:opacity-100 relative group" href="#">
-                    Email
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-label-sm text-label-sm opacity-80 hover:opacity-100 relative group" href="#">
-                    RSS
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="text-right hidden sm:block">
-                    <div class="text-[10px] font-label-sm text-[var(--text-secondary)] uppercase">Network Status</div>
-                    <div class="flex items-center gap-2 text-[var(--accent)]">
-                        <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
-                        <span class="text-xs font-bold uppercase tracking-widest">Encrypted Connection</span>
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[var(--bg-secondary)] border-t border-[var(--border-color)]/50 transition-colors duration-300 relative">
+        <!-- Decorative gradient line -->
+        <div class="h-1 w-full bg-gradient-to-r from-[var(--accent)] via-[var(--accent-light)] to-[var(--accent)] opacity-30"></div>
+
+        <div class="px-4 md:px-16 py-10 md:py-12 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+                <!-- Left -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                                    <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+                <div class="relative flex-shrink-0">
+                    <svg class="logo-svg" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+                        <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+                        <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+                        <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    </svg>
+                    <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="logo-text font-bold tracking-tight">
+                        <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                            giang
+                            <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+                        </span>
+                        <span class="logo-dot text-[var(--warm-light)] group-hover:text-[var(--accent)] transition-colors duration-300">.</span>
+                    </span>
+                    <span class="logo-sub font-label-sm text-[var(--text-muted)] uppercase group-hover:text-[var(--accent)] transition-colors duration-300">network & security</span>
+                </div>
+            </a>
                     </div>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mt-4 max-w-xs">
+                        Sinh viên Network & Security, đam mê xây dựng và bảo vệ hệ thống mạng hiện đại.
+                    </p>
+                    <div class="mt-6 flex gap-3">
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">mail</span>
+                        </a>
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">code</span>
+                        </a>
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">chat</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Middle -->
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--accent)] uppercase tracking-widest mb-5 md:mb-6 flex items-center gap-2 border-b border-[var(--border-color)]/50 pb-3">
+                        <span class="material-symbols-outlined text-[var(--accent)] text-base">explore</span>
+                        Khám phá
+                    </h4>
+                    <nav class="space-y-2.5">
+                        <a href="about.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Giới thiệu</a>
+                        <a href="archives.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Lịch sử Internet VN</a>
+                        <a href="blog.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Bài viết</a>
+                        <a href="tags.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Kho tư liệu</a>
+                    </nav>
+                </div>
+
+                <!-- Right -->
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--accent)] uppercase tracking-widest mb-5 md:mb-6 flex items-center gap-2 border-b border-[var(--border-color)]/50 pb-3">
+                        <span class="material-symbols-outlined text-[var(--accent)] text-base">contact_support</span>
+                        Liên hệ
+                    </h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] mt-0.5 flex-shrink-0 text-base">location_on</span>
+                            <div>
+                                <p class="text-[var(--text-secondary)]">523 Mai Đăng Chơn</p>
+                                <p class="text-[var(--text-secondary)]">Đà Nẵng, Việt Nam</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] text-base">phone</span>
+                            <a href="tel:+84837122005" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-medium">(083) 7122005</a>
+                        </div>
+                        <div class="flex items-center gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] text-base">mail</span>
+                            <a href="mailto:trinhthihuonggiang5002@gmail.com" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors text-xs break-all">trinhthihuonggiang5002@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="border-t border-[var(--border-color)]/50 pt-5 md:pt-6 mt-6 md:mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-widest">© 2026 Huong Giang. Network and Security.</p>
+                <div class="flex items-center gap-4 md:gap-6">
+                    <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse shadow-sm shadow-[var(--accent-glow)]"></span>
+                        Online
+                    </span>
+                    <a href="#" class="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Privacy</a>
+                    <a href="#" class="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Terms</a>
+                    <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[12px] text-[var(--accent)]">wifi</span>
+                        Secure
+                    </span>
                 </div>
             </div>
         </div>
@@ -501,18 +588,6 @@
             glow.style.opacity = '1';
             glow.style.left = e.clientX + 'px';
             glow.style.top = e.clientY + 'px';
-        });
-
-        // Activity chart animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const bars = document.querySelectorAll('.activity-bar');
-            bars.forEach((bar, index) => {
-                const finalHeight = bar.style.height;
-                bar.style.height = '0%';
-                setTimeout(() => {
-                    bar.style.height = finalHeight;
-                }, 100 + (index * 80));
-            });
         });
     </script>
 </body>

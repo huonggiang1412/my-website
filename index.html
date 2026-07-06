@@ -1,11 +1,10 @@
-
 <!-- ============== index.html ============== -->
 <!DOCTYPE html>
 <html class="light" lang="vi">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>SANTO-RYU | Horizon Trace</title>
+    <title>Huong Giang | Intern</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -13,49 +12,71 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --bg-primary: #eef5f7;
+            /* Light theme */
+            --bg-primary: #ecf7f9;
             --bg-secondary: #f7fbfc;
-            --text-primary: #173040;
-            --text-secondary: #5d7182;
-            --accent: #0f766e;
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --text-primary: #0b2a35;
+            --text-secondary: #3d5a6b;
+            --text-muted: #7a9aaa;
+            --accent: #0d9488;
             --accent-light: #2dd4bf;
-            --border-color: #d7e4ea;
-            --card-bg: rgba(248, 252, 253, 0.86);
-            --shadow: 0 16px 45px rgba(15, 23, 42, 0.08);
+            --accent-dark: #0f766e;
+            --accent-glow: rgba(13, 148, 136, 0.20);
+            --warm: #f59e0b;
+            --warm-light: #fbbf24;
+            --warm-glow: rgba(245, 158, 11, 0.18);
+            --border-color: #c8dce4;
+            --shadow: 0 20px 50px rgba(13, 148, 136, 0.10);
+            --shadow-hover: 0 24px 60px rgba(13, 148, 136, 0.20);
         }
         
         [data-theme="dark"] {
-            --bg-primary: #07111f;
-            --bg-secondary: #101928;
-            --text-primary: #e8f1ff;
-            --text-secondary: #aebdca;
+            --bg-primary: #08141e;
+            --bg-secondary: #0f1d2a;
+            --bg-card: rgba(15, 29, 42, 0.88);
+            --text-primary: #d6edf5;
+            --text-secondary: #9ab9c9;
+            --text-muted: #5d8395;
             --accent: #5eead4;
             --accent-light: #2dd4bf;
-            --border-color: #334155;
-            --card-bg: rgba(11, 19, 38, 0.72);
-            --shadow: 0 16px 45px rgba(2, 6, 23, 0.36);
+            --accent-dark: #0d9488;
+            --accent-glow: rgba(94, 234, 212, 0.16);
+            --warm: #fbbf24;
+            --warm-light: #fcd34d;
+            --warm-glow: rgba(251, 191, 36, 0.14);
+            --border-color: #2a4250;
+            --shadow: 0 20px 50px rgba(0, 0, 0, 0.40);
+            --shadow-hover: 0 24px 60px rgba(94, 234, 212, 0.12);
         }
         
         body {
             font-family: 'Manrope', sans-serif;
             background-color: var(--bg-primary);
-            background-image:
-                radial-gradient(circle at top left, rgba(45, 212, 191, 0.16), transparent 32%),
-                radial-gradient(circle at 85% 12%, rgba(15, 118, 110, 0.10), transparent 24%),
-                linear-gradient(135deg, #f7fbfc 0%, #eef5f7 100%);
             color: var(--text-primary);
-            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-x: hidden;
             padding-top: 64px;
             line-height: 1.75;
             font-size: 16px;
         }
 
-        [data-theme="dark"] body {
-            background-image:
-                radial-gradient(circle at top left, rgba(94, 234, 212, 0.10), transparent 28%),
-                radial-gradient(circle at 85% 12%, rgba(45, 212, 191, 0.08), transparent 24%),
-                linear-gradient(135deg, #07111f 0%, #0c1526 100%);
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 0% 20%, rgba(13, 148, 136, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 100% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        [data-theme="dark"] body::before {
+            background:
+                radial-gradient(circle at 0% 20%, rgba(94, 234, 212, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 100% 80%, rgba(251, 191, 36, 0.06) 0%, transparent 50%);
         }
 
         h1, h2, h3, h4 {
@@ -65,7 +86,7 @@
         }
 
         .hero-title {
-            font-size: clamp(2.6rem, 5.2vw, 4.3rem);
+            font-size: clamp(3.6rem, 5.0vw, 3.3rem);
             line-height: 0.95;
             letter-spacing: -0.04em;
             font-weight: 800;
@@ -74,7 +95,21 @@
 
         .hero-title .accent-word {
             color: var(--accent);
-            text-shadow: 0 0 10px rgba(15, 118, 110, 0.14);
+            text-shadow: 0 0 30px var(--accent-glow);
+            position: relative;
+            
+        }
+        .hero-title .accent-word::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--warm-light));
+            border-radius: 4px;
+            opacity: 0.5;
+            
         }
 
         .hero-copy {
@@ -88,12 +123,15 @@
             line-height: 1.2;
             font-weight: 700;
         }
+        .section-title .highlight {
+            color: var(--accent);
+        }
         
         .glass-card {
-            background: var(--card-bg);
+            background: var(--bg-card);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(15, 118, 110, 0.12);
+            border: 1px solid rgba(13, 148, 136, 0.12);
             box-shadow: var(--shadow);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                         box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -111,23 +149,18 @@
         .glass-card:hover {
             transform: translateY(-6px) scale(1.01);
             border-color: var(--accent-light);
-            box-shadow: 0 18px 45px rgba(45, 212, 191, 0.16);
+            box-shadow: var(--shadow-hover);
         }
         
         .topo-texture {
-            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10C30 20 50 10 70 30S110 50 130 40 170 60 190 50' stroke='%2300b4d8' stroke-opacity='0.05' fill='none'/%3E%3Cpath d='M0 50C20 60 40 50 60 70S100 90 120 80 160 100 180 90' stroke='%2300b4d8' stroke-opacity='0.03' fill='none'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10C30 20 50 10 70 30S110 50 130 40 170 60 190 50' stroke='%230d9488' stroke-opacity='0.05' fill='none'/%3E%3Cpath d='M0 50C20 60 40 50 60 70S100 90 120 80 160 100 180 90' stroke='%23f59e0b' stroke-opacity='0.03' fill='none'/%3E%3C/svg%3E");
         }
-        
         [data-theme="dark"] .topo-texture {
-            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10C30 20 50 10 70 30S110 50 130 40 170 60 190 50' stroke='%2300daf3' stroke-opacity='0.05' fill='none'/%3E%3Cpath d='M0 50C20 60 40 50 60 70S100 90 120 80 160 100 180 90' stroke='%2300daf3' stroke-opacity='0.03' fill='none'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10C30 20 50 10 70 30S110 50 130 40 170 60 190 50' stroke='%235eead4' stroke-opacity='0.05' fill='none'/%3E%3Cpath d='M0 50C20 60 40 50 60 70S100 90 120 80 160 100 180 90' stroke='%23fbbf24' stroke-opacity='0.03' fill='none'/%3E%3C/svg%3E");
         }
         
         .glow-pulse:hover {
-            box-shadow: 0 0 30px rgba(0, 180, 216, 0.25);
-        }
-        
-        [data-theme="dark"] .glow-pulse:hover {
-            box-shadow: 0 0 30px rgba(0, 218, 243, 0.3);
+            box-shadow: 0 0 30px var(--accent-glow);
         }
         
         .material-symbols-outlined {
@@ -146,16 +179,10 @@
             padding: 8px;
             border-radius: 50%;
             transition: background 0.3s;
+            color: var(--text-secondary);
         }
         .theme-toggle:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-        [data-theme="dark"] .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, var(--bg-primary) 0%, transparent 100%);
+            background: rgba(13, 148, 136, 0.10);
         }
         
         @keyframes float {
@@ -186,10 +213,6 @@
             animation: pulse-ring 2s ease-out infinite;
         }
 
-        .notes-carousel {
-            overflow: hidden;
-        }
-
         .notes-track {
             display: flex;
             gap: 1.5rem;
@@ -207,18 +230,22 @@
             transform: translateY(-4px) scale(1.01);
         }
 
-        .gallery-slide {
-            display: none;
-            animation: fadeUp 0.6s ease both;
+        .gallery-track {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
         }
 
-        .gallery-slide.active {
-            display: block;
+        .gallery-slide {
+            flex: 0 0 100%;
+            min-width: 100%;
+            position: relative;
         }
 
         .gallery-dot.active {
             background: var(--accent);
             transform: scale(1.08);
+            box-shadow: 0 0 12px var(--accent-glow);
         }
 
         .gallery-info-card {
@@ -229,465 +256,681 @@
             display: block;
         }
         
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-primary); }
         ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-light); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        .text-warm { color: var(--warm); }
+        .text-warm-light { color: var(--warm-light); }
+        .border-warm\/20 { border-color: var(--warm); border-opacity: 0.2; }
+        .bg-warm\/10 { background-color: var(--warm); opacity: 0.1; }
+        .hover\:bg-warm\/10:hover { background-color: var(--warm); opacity: 0.1; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent), var(--warm-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-badge {
+            background: linear-gradient(135deg, rgba(13,148,136,0.12), rgba(245,158,11,0.08));
+            border: 1px solid rgba(13,148,136,0.20);
+        }
+        [data-theme="dark"] .hero-badge {
+            background: linear-gradient(135deg, rgba(94,234,212,0.10), rgba(251,191,36,0.06));
+            border-color: rgba(94,234,212,0.20);
+        }
+
+        .footer-accent {
+            background: linear-gradient(90deg, var(--accent), var(--warm-light), var(--accent));
+            height: 2px;
+            width: 100%;
+            opacity: 0.3;
+        }
+
+        /* ===== HEADER FIX: Logo nhỏ gọn hơn ===== */
+        .logo-text {
+            font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            font-weight: 700;
+        }
+        .logo-dot {
+            font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+        }
+        .logo-sub {
+            font-size: clamp(0.5rem, 0.6vw, 0.65rem);
+            letter-spacing: 0.3em;
+        }
+        .logo-svg {
+            width: clamp(2rem, 2.4vw, 2.5rem);
+            height: clamp(2rem, 2.4vw, 2.5rem);
+        }
+        .w-w {
+            font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+            font-weight: 500;
+            color: var(--accent);
+        }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- ===== HEADER ===== -->
     <header class="fixed top-0 w-full z-50 bg-[var(--bg-secondary)]/80 backdrop-blur-xl border-b border-[var(--border-color)]/50 shadow-sm transition-colors duration-300">
-        <div class="flex justify-between items-center h-16 px-6 md:px-16 max-w-7xl mx-auto">
-            <a href="index.html" class="flex items-center gap-3 group">
-    <div class="relative">
-        <svg class="w-10 h-10" viewBox="0 0 48 48" fill="none">
-            <!-- Vòng tròn ngoài với hiệu ứng dash -->
-            <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
-            <!-- Vòng tròn thứ 2 -->
-            <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
-            <!-- Vòng tròn thứ 3 -->
-            <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
-            <!-- Chấm trung tâm -->
-            <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
-            <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
-            <!-- Đường kẻ ngang -->
-            <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-            <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-            <!-- Đường kẻ dọc -->
-            <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-            <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-        </svg>
-        <!-- Glow effect -->
-        <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-    </div>
-    <div class="flex flex-col leading-tight">
-        <span class="font-headline-lg text-2xl md:text-3xl font-bold tracking-tight">
-            <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
-                giang
-                <!-- Underline glow -->
-                <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
-            </span>
-            <span class="text-[var(--accent-light)] group-hover:text-[var(--accent)] transition-colors duration-300 text-3xl md:text-4xl">.</span>
-        </span>
-        <span class="font-label-sm text-[9px] text-[var(--text-secondary)] tracking-[0.3em] uppercase group-hover:text-[var(--accent)] transition-colors duration-300 mt-0.5">network & security</span>
-    </div>
-</a>
-            <nav class="hidden md:flex items-center gap-8 font-body-md text-body-md">
-                <a href="index.html" class="text-[var(--accent)] font-bold border-b-2 border-[var(--accent)] py-1 transition-all duration-300">Home</a>
-                <a href="blog.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+        <div class="flex justify-between items-center h-14 md:h-16 px-4 md:px-16 max-w-7xl mx-auto">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+                <div class="relative flex-shrink-0">
+                    <svg class="logo-svg" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+                        <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+                        <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+                        <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    </svg>
+                    <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="logo-text font-bold tracking-tight">
+                        <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                            giang
+                            <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+                        </span>
+                        <span class="logo-dot text-[var(--warm-light)] group-hover:text-[var(--accent)] transition-colors duration-300">.</span>
+                    </span>
+                    <span class="logo-sub font-label-sm text-[var(--text-muted)] uppercase group-hover:text-[var(--accent)] transition-colors duration-300">network & security</span>
+                </div>
+            </a>
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8 font-body-md text-body-md">
+                <a href="index.html" class="text-[var(--accent)] font-bold border-b-2 border-[var(--accent)] py-1 transition-all duration-300 text-sm">Home</a>
+                <a href="blog.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group text-sm">
                     Blog
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
                 </a>
-                <a href="tags.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                <a href="tags.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group text-sm">
                     Tags
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
                 </a>
-                <a href="archives.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                <a href="archives.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group text-sm">
                     Archives
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
                 </a>
-                <a href="about.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                <a href="about.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group text-sm">
                     About
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
                 </a>
             </nav>
-            <div class="flex items-center gap-3">
-                <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-[var(--border-color)]/30 transition-all duration-300" aria-label="Toggle theme">
-                    <span class="material-symbols-outlined theme-icon-light text-[var(--text-secondary)]">light_mode</span>
-                    <span class="material-symbols-outlined theme-icon-dark text-[var(--text-secondary)]">dark_mode</span>
+
+            <!-- Right -->
+            <div class="flex items-center gap-2 md:gap-3">
+                <button id="theme-toggle" class="theme-toggle p-1.5 md:p-2 rounded-full hover:bg-[var(--border-color)]/30 transition-all duration-300" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined theme-icon-light text-[var(--text-secondary)] text-xl md:text-2xl">light_mode</span>
+                    <span class="material-symbols-outlined theme-icon-dark text-[var(--text-secondary)] text-xl md:text-2xl">dark_mode</span>
                 </button>
             </div>
         </div>
     </header>
 
+    <!-- ===== MAIN ===== -->
     <main class="min-h-screen">
-        <!-- Hero Section -->
+        <!-- Hero -->
         <section class="relative w-full min-h-[80vh] flex items-center overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <img alt="Hero background" class="w-full h-full object-cover opacity-60 grayscale-[0.1]" src="./Untitled.jpeg"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-transparent to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/60 to-transparent"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-[var(--bg-primary)]/90 via-transparent to-transparent"></div>
             </div>
             
-            <div class="relative z-10 px-6 md:px-16 max-w-7xl mx-auto w-full py-20">
-                <div class="max-w-3xl space-y-6 fade-in-up">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 backdrop-blur-sm">
-                        <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
-                        <span class="font-label-sm text-label-sm text-[var(--accent)] uppercase">Active Signal Intercepted</span>
+            <div class="relative z-10 px-4 md:px-16 max-w-7xl mx-auto w-full py-16 md:py-20">
+                <div class="max-w-3xl space-y-5 md:space-y-6 fade-in-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full hero-badge backdrop-blur-sm">
+                        <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
+                        <span class="font-label-sm text-[10px] md:text-label-sm text-[var(--accent)] uppercase">IDENTITY VERIFIED</span>
                     </div>
-                    <h1 class="hero-title leading-tight">
-                        Chao xìn <br/>
-                        <span class="accent-word">Horizon</span>
-                    </h1>
+                    <p class="hero-title leadinInterng-tight">
+                        hi, i'm Huong Giang 
+                     </p>   <br/>
+                        <span class="accent-word w-w">Intern Network & Security</span>
+                    
                     <p class="hero-copy max-w-xl">
-                        A cyber forensic narrative of global exploration. Investigating the intersection of physical landscapes and digital footprints across 42 countries.
+                       Đang từng bước trở thành một kỹ sư mạng và bảo mật, bắt đầu từ những lab nhỏ đến hệ thống thực tế.
                     </p>
-                    <div class="flex flex-wrap gap-4 pt-4 fade-in-up delay-200">
-                        <a href="blog.html" class="group px-8 py-3 bg-[var(--accent)] text-white font-bold rounded-lg glow-pulse transition-all flex items-center gap-2 hover:scale-105">
-                            Explore Logs
-                            <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+                    <div class="flex flex-wrap gap-3 md:gap-4 pt-3 md:pt-4 fade-in-up delay-200">
+                        <a href="blog.html" class="group px-6 md:px-8 py-2.5 md:py-3 bg-[var(--accent)] text-white font-bold rounded-lg glow-pulse transition-all flex items-center gap-2 hover:scale-105 shadow-lg shadow-[var(--accent-glow)] text-sm md:text-base">
+                            Dự án
+                            <span class="material-symbols-outlined text-base md:text-xl transition-transform group-hover:translate-x-1">arrow_forward</span>
                         </a>
-                        <button class="px-8 py-3 bg-[var(--bg-secondary)]/60 backdrop-blur-md text-[var(--accent)] font-bold rounded-lg border border-[var(--accent)]/20 hover:bg-[var(--accent)]/10 transition-all">
-                            View Coordinates
-                        </button>
+                        <a href="./CV_TrinhThiHuongGiang_InternNetwork.pdf" download
+                           class="px-6 md:px-8 py-2.5 md:py-3 bg-[var(--bg-secondary)]/60 backdrop-blur-md text-[var(--accent)] font-bold rounded-lg border border-[var(--accent)]/20 hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all inline-block text-center text-sm md:text-base">
+                            Tải CV
+                        </a>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Terminal Decrypt Effect -->
-            <div class="absolute bottom-12 right-6 md:right-16 hidden lg:block">
-                <div class="glass-card p-4 rounded-xl font-label-sm text-label-sm text-[var(--accent)] border border-[var(--accent)]/10 w-64 space-y-2">
-                    <div class="flex justify-between border-b border-[var(--accent)]/10 pb-2">
-                        <span>LAT: 35.6895° N</span>
-                        <span>LNG: 139.6917° E</span>
-                    </div>
-                    <div class="animate-pulse space-y-1">
-                        <div class="h-1 bg-[var(--accent)]/20 rounded w-full"></div>
-                        <div class="h-1 bg-[var(--accent)]/20 rounded w-4/5"></div>
-                        <div class="h-1 bg-[var(--accent)]/20 rounded w-5/6"></div>
-                    </div>
-                    <div class="text-[10px] uppercase opacity-60">Tracing system active...</div>
                 </div>
             </div>
         </section>
-
-        <!-- Main Content -->
-        <section class="px-6 md:px-16 max-w-7xl mx-auto py-16 md:py-24 fade-in-up delay-400">
+        <!-- ===== SECTION: Latest Expedition Logs ===== -->
+        <section class="px-4 md:px-16 max-w-7xl mx-auto py-12 md:py-16 fade-in-up delay-400">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 <!-- Blog Posts -->
                 <div class="lg:col-span-8 space-y-8">
                     <div class="flex items-end justify-between border-b border-[var(--border-color)] pb-4">
                         <div>
-                            <h2 class="section-title text-[var(--text-primary)]">Latest Expedition Logs</h2>
-                            <p class="font-label-sm text-label-sm text-[var(--text-secondary)] mt-2 uppercase tracking-widest">Entry points for current intelligence</p>
+                            <h2 class="section-title text-[var(--text-primary)]">Latest<span class="highlight"> Blog </span> Posts</h2>
+                            <p class="font-label-sm text-label-sm text-[var(--text-secondary)] mt-2 uppercase tracking-widest">Những bài viết và chia sẻ mới nhất</p>
                         </div>
-                        <a href="blog.html" class="text-[var(--accent)] font-label-sm text-label-sm hover:underline font-bold">ACCESS ALL ARCHIVES</a>
+                        <a href="blog.html" class="text-[var(--accent)] font-label-sm text-label-sm hover:underline font-bold">Truy cập tất cả bài viết</a>
                     </div>
                     
                     <div class="space-y-6">
                         <!-- Post 1 -->
-                        <article class="group glass-card p-6 rounded-2xl overflow-hidden topo-texture">
-                            <div class="grid md:grid-cols-5 gap-6">
-                                <div class="md:col-span-2 overflow-hidden rounded-xl h-48 md:h-full">
-                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./pic1.jpeg" alt="Tokyo street"/>
-                                </div>
-                                <div class="md:col-span-3 space-y-4">
-                                    <div class="flex gap-4 text-label-sm font-label-sm text-[var(--accent)]/70 uppercase">
-                                        <span>Aug 24, 2024</span>
-                                        <span>•</span>
-                                        <span>Forensic Intel</span>
-                                    </div>
-                                    <h3 class="font-headline-lg-mobile text-headline-lg-mobile md:text-headline-lg text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">Ghosting the Shinjuku Grid: Wi-Fi Mesh Analysis</h3>
-                                    <p class="text-[var(--text-secondary)] line-clamp-3">A deep dive into the hidden network layers of Tokyo's densest ward. Using passive packet capture to map the movement of temporary digital entities within the physical architecture.</p>
-                                    <div class="flex gap-2">
-                                        <span class="px-2 py-1 bg-[var(--bg-secondary)]/50 rounded text-[10px] font-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">TOKYO</span>
-                                        <span class="px-2 py-1 bg-[var(--bg-secondary)]/50 rounded text-[10px] font-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">CYBER-GEO</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+<article class="group glass-card p-5 md:p-6 rounded-2xl overflow-hidden topo-texture">
+    <a href="blog1.html" class="grid md:grid-cols-5 gap-6">
+        <div class="md:col-span-2 overflow-hidden rounded-xl h-48 md:h-full">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./pic1.jpeg" alt="Nhiệm kỳ Ban Chấp hành Khoa Kỹ thuật Máy tính và Điện tử"/>
+        </div>
+        <div class="md:col-span-3 space-y-4">
+            <div class="flex gap-4 text-label-sm font-label-sm text-[var(--accent)]/70 uppercase">
+                <span>Oct 15, 2024</span>
+                <span>•</span>
+                <span>Kỷ niệm</span>
+            </div>
+            <h3 class="font-headline-lg-mobile text-headline-lg-mobile md:text-headline-lg text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                Nhiệm kỳ thành viên Ban Chấp hành Khoa Kỹ thuật Máy tính và Điện tử
+            </h3>
+            <p class="text-[var(--text-secondary)] line-clamp-3">
+                Hành trình từ ứng cử viên đến thành viên tích cực của BCH, những hoạt động, trách nhiệm và kỷ niệm đáng nhớ trong suốt nhiệm kỳ.
+            </p>
+            <div class="flex gap-2">
+                <span class="px-2 py-1 bg-[var(--bg-secondary)]/50 rounded text-[10px] font-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">BCH</span>
+                <span class="px-2 py-1 bg-[var(--bg-secondary)]/50 rounded text-[10px] font-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">Khoa KTMT&ĐT</span>
+                <span class="px-2 py-1 bg-[var(--bg-secondary)]/50 rounded text-[10px] font-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">Kỷ niệm</span>
+            </div>
+        </div>
+    </a>
+</article>
                         
                         <!-- Post 2 -->
-                        <article class="group glass-card p-6 rounded-2xl overflow-hidden topo-texture">
-                            <div class="grid md:grid-cols-5 gap-6">
-                                <div class="md:col-span-2 overflow-hidden rounded-xl h-48 md:h-full">
-                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./pic5.jpeg" alt="Iceland landscape"/>
-                                </div>
-                                <div class="md:col-span-3 space-y-4">
-                                    <div class="flex gap-4 text-label-sm font-label-sm text-[var(--accent)]/70 uppercase">
-                                        <span>Jul 12, 2024</span>
-                                        <span>•</span>
-                                        <span>Signal Analysis</span>
-                                    </div>
-                                    <h3 class="font-headline-lg-mobile text-headline-lg-mobile md:text-headline-lg text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">Signals from the Void: Iceland's Volcanic Data Centers</h3>
-                                    <p class="text-[var(--text-secondary)] line-clamp-3">Tracing the physical infrastructure of the internet to its coldest nodes. How geothermal energy and sub-arctic climates shape the future of sovereign data storage.</p>
-                                    <div class="flex gap-2">
-                                        <span class="px-2 py-1 bg-[var(--bg-secondary)]/50 rounded text-[10px] font-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">ICELAND</span>
-                                        <span class="px-2 py-1 bg-[var(--bg-secondary)]/50 rounded text-[10px] font-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">HARDWARE</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                        <!-- Post 2 -->
+<article class="group glass-card p-5 md:p-6 rounded-2xl overflow-hidden topo-texture">
+    <a href="blog2.html" class="grid md:grid-cols-5 gap-6">
+        <div class="md:col-span-2 overflow-hidden rounded-xl h-48 md:h-full">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./pic5.jpeg" alt="Tại sao nên học mạng?"/>
+        </div>
+        <div class="md:col-span-3 space-y-4">
+            <div class="flex gap-4 text-label-sm font-label-sm text-[var(--accent)]/70 uppercase">
+                <span>Nov 05, 2024</span>
+                <span>•</span>
+                <span>Chia sẻ</span>
+            </div>
+            <h3 class="font-headline-lg-mobile text-headline-lg-mobile md:text-headline-lg text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                Tại sao nên học mạng? – Lý do từ một người đang trên hành trình
+            </h3>
+            <p class="text-[var(--text-secondary)] line-clamp-3">
+                Những suy nghĩ, cơ hội và lợi ích khi theo đuổi con đường Network & Security, cùng những trải nghiệm thực tế đã củng cố đam mê của mình.
+            </p>
+            <div class="flex gap-2">
+                <span class="px-2 py-1 bg-[var(--bg-secondary)]/50 rounded text-[10px] font-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">Network</span>
+                <span class="px-2 py-1 bg-[var(--bg-secondary)]/50 rounded text-[10px] font-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">Security</span>
+                <span class="px-2 py-1 bg-[var(--bg-secondary)]/50 rounded text-[10px] font-label-sm text-[var(--text-secondary)] border border-[var(--border-color)]">Định hướng</span>
+            </div>
+        </div>
+    </a>
+</article>
                     </div>
-                    
                 </div>
                 
                 <!-- Sidebar -->
                 <aside class="lg:col-span-4 space-y-6">
                     <!-- Profile -->
                     <div class="glass-card p-6 md:p-8 rounded-3xl text-center space-y-6 border border-[var(--accent)]/20">
-                        <div class="relative w-32 h-32 mx-auto">
+                        <div class="relative w-28 h-28 md:w-32 md:h-32 mx-auto">
                             <div class="absolute inset-0 rounded-full border-2 border-dashed border-[var(--accent)]/30 animate-[spin_10s_linear_infinite]"></div>
-                            <img alt="Santo Ryu" class="w-full h-full object-cover rounded-full p-2" src="./av.jpg"/>
+                            <img alt="Huong Giang" class="w-full h-full object-cover rounded-full p-2" src="./av.jpg"/>
                         </div>
                         <div>
                             <h3 class="font-headline-lg text-headline-lg">Hương Giang</h3>
-                            <p class="font-label-sm text-label-sm text-[var(--accent)] uppercase tracking-tighter">Chief Investigator / Digital Nomad</p>
+                            <p class="font-label-sm text-label-sm text-[var(--accent)] uppercase tracking-tighter">Intern Network and Security</p>
                         </div>
                         <p class="text-[var(--text-secondary)] text-sm italic leading-relaxed">
-                            "Finding the truth where the pavement ends and the fiber begins."
+                            "Ít nói nhưng luôn có câu chuyện."
                         </p>
                         <div class="flex justify-center gap-4">
-                            <a class="w-10 h-10 rounded-full border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/5 transition-colors" href="#">
-                                <span class="material-symbols-outlined text-sm text-[var(--text-secondary)]">public</span>
+                            <a class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/5 transition-colors" href="https://www.facebook.com/huong.giang.916127?locale=vi_VN" title="Facebook">
+                                <span class="material-symbols-outlined text-sm text-[var(--text-secondary)]">thumb_up</span>
                             </a>
-                            <a class="w-10 h-10 rounded-full border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/5 transition-colors" href="#">
-                                <span class="material-symbols-outlined text-sm text-[var(--text-secondary)]">terminal</span>
+                            <a class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/5 transition-colors" href="https://chat.zalo.me/?null" title="Zalo">
+                                <span class="material-symbols-outlined text-sm text-[var(--text-secondary)]">chat_bubble</span>
                             </a>
-                            <a class="w-10 h-10 rounded-full border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/5 transition-colors" href="#">
-                                <span class="material-symbols-outlined text-sm text-[var(--text-secondary)]">mail</span>
+                            <a class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/5 transition-colors" href="https://github.com/huonggiang1412" title="GitHub">
+                                <span class="material-symbols-outlined text-sm text-[var(--text-secondary)]">code</span>
                             </a>
                         </div>
                     </div>
                     
-                    <!-- Travel Kit -->
-                    <div class="glass-card p-6 rounded-2xl space-y-4 border border-[var(--border-color)]">
+                    <!-- Skills -->
+                    <div class="glass-card p-5 md:p-6 rounded-2xl space-y-4 border border-[var(--border-color)]">
                         <h4 class="font-label-sm text-label-sm text-[var(--accent)] uppercase tracking-widest border-b border-[var(--border-color)] pb-2 flex items-center gap-2">
                             <span class="material-symbols-outlined text-lg">construction</span>
-                            Expedition Kit 01
+                            Kỹ năng
                         </h4>
                         <ul class="space-y-3">
-                            <li class="flex items-center justify-between group">
+                            <li class="flex items-center justify-between group hover:translate-x-1 transition-all duration-200">
                                 <div class="flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-[var(--text-secondary)]">camera</span>
-                                    <span class="text-sm font-medium text-[var(--text-primary)]">LUMIX S5IIx</span>
+                                    <span class="material-symbols-outlined text-[var(--text-secondary)]">hub</span>
+                                    <span class="text-sm font-medium text-[var(--text-primary)]">VLAN, OSPF, NAT, DHCP</span>
                                 </div>
                                 <span class="text-[10px] font-label-sm text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity">VERIFIED</span>
                             </li>
-                            <li class="flex items-center justify-between group">
+                            <li class="flex items-center justify-between group hover:translate-x-1 transition-all duration-200">
                                 <div class="flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-[var(--text-secondary)]">laptop_mac</span>
-                                    <span class="text-sm font-medium text-[var(--text-primary)]">Kali Linux (Portable)</span>
+                                    <span class="material-symbols-outlined text-[var(--text-secondary)]">security</span>
+                                    <span class="text-sm font-medium text-[var(--text-primary)]">Firewall (pfSense)</span>
                                 </div>
                                 <span class="text-[10px] font-label-sm text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity">VERIFIED</span>
                             </li>
-                            <li class="flex items-center justify-between group">
+                            <li class="flex items-center justify-between group hover:translate-x-1 transition-all duration-200">
                                 <div class="flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-[var(--text-secondary)]">satellite_alt</span>
-                                    <span class="text-sm font-medium text-[var(--text-primary)]">Garmin inReach Mini</span>
+                                    <span class="material-symbols-outlined text-[var(--text-secondary)]">gpp_maybe</span>
+                                    <span class="text-sm font-medium text-[var(--text-primary)]">IDS/IPS (Suricata)</span>
                                 </div>
                                 <span class="text-[10px] font-label-sm text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity">VERIFIED</span>
                             </li>
-                            <li class="flex items-center justify-between group">
+                            <li class="flex items-center justify-between group hover:translate-x-1 transition-all duration-200">
                                 <div class="flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-[var(--text-secondary)]">router</span>
-                                    <span class="text-sm font-medium text-[var(--text-primary)]">Alfa AWUS036ACM</span>
+                                    <span class="material-symbols-outlined text-[var(--text-secondary)]">monitoring</span>
+                                    <span class="text-sm font-medium text-[var(--text-primary)]">Wireshark & Monitoring</span>
+                                </div>
+                                <span class="text-[10px] font-label-sm text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity">VERIFIED</span>
+                            </li>
+                            <li class="flex items-center justify-between group hover:translate-x-1 transition-all duration-200">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-[var(--text-secondary)]">dns</span>
+                                    <span class="text-sm font-medium text-[var(--text-primary)]">Windows Server, AD</span>
                                 </div>
                                 <span class="text-[10px] font-label-sm text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity">VERIFIED</span>
                             </li>
                         </ul>
                     </div>
-                    
                 </aside>
             </div>
         </section>
-        <section class="px-6 md:px-16 max-w-7xl mx-auto pb-16 md:pb-24 fade-in-up delay-400">
+        
+<!-- ===== SECTION: Additional Field Notes ===== -->
+        <section class="px-4 md:px-16 max-w-7xl mx-auto pb-12 md:pb-16 fade-in-up delay-400">
             <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
                 <div>
-                    <h2 class="section-title text-[var(--text-primary)]">Additional Field Notes</h2>
-                    <p class="font-label-sm text-label-sm text-[var(--text-secondary)] mt-2 uppercase tracking-widest">More signals, more context, more routes</p>
+                    <h2 class="section-title text-[var(--text-primary)]">Dự án <span class="highlight">nổi bật</span></h2>
+                    <p class="font-label-sm text-label-sm text-[var(--text-secondary)] mt-2 uppercase tracking-widest">Những hệ thống đã triển khai và vận hành</p>
                 </div>
-                <a href="archives.html" class="text-[var(--accent)] font-label-sm text-label-sm hover:underline font-bold">VIEW MORE</a>
+                <a href="archives.html" class="text-[var(--accent)] font-label-sm text-label-sm hover:underline font-bold">XEM TẤT CẢ</a>
             </div>
 
             <div class="notes-carousel overflow-hidden">
                 <div class="notes-track flex gap-6">
-                    <article class="note-card glass-card p-6 rounded-2xl overflow-hidden">
-                        <img class="w-full h-40 object-cover rounded-xl mb-4" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Travel route map" />
+                    <!-- Project 1: Hệ thống mạng mô phỏng doanh nghiệp -->
+                    <article class="note-card glass-card p-5 md:p-6 rounded-2xl overflow-hidden border-l-4 border-l-[var(--accent)]">
+                        <img class="w-full h-36 md:h-40 object-cover rounded-xl mb-4" src="./mo-hinh-mang-dn.jpeg" alt="Mô hình mạng doanh nghiệp" />
                         <div class="flex items-center gap-3 mb-4">
-                            <span class="material-symbols-outlined text-[var(--accent)]">timeline</span>
-                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)]">Recent Coordinates</h3>
+                            <span class="material-symbols-outlined text-[var(--accent)]">hub</span>
+                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)]">Mô hình mạng doanh nghiệp</h3>
                         </div>
-                        <ul class="space-y-3 text-sm text-[var(--text-secondary)]">
-                            <li class="flex justify-between border-b border-[var(--border-color)]/50 pb-2"><span>Tokyo</span><span class="text-[var(--accent)]">35.6895°N</span></li>
-                            <li class="flex justify-between border-b border-[var(--border-color)]/50 pb-2"><span>Reykjavík</span><span class="text-[var(--accent)]">64.1466°N</span></li>
-                            <li class="flex justify-between"><span>Ho Chi Minh</span><span class="text-[var(--accent)]">10.8231°N</span></li>
+                        <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                            <li class="flex justify-between border-b border-[var(--border-color)]/50 pb-2"><span>VLAN, OSPF, NAT</span><span class="text-[var(--accent)]">2025</span></li>
+                            <li class="flex justify-between border-b border-[var(--border-color)]/50 pb-2"><span>Packet Tracer / PNETLab</span><span class="text-[var(--accent)]">Đã hoàn thành</span></li>
+                            <li class="flex justify-between"><span>Subnet &amp; Định tuyến động</span><span class="text-[var(--accent)]">Stable</span></li>
                         </ul>
                     </article>
 
-                    <article class="note-card glass-card p-6 rounded-2xl overflow-hidden">
-                        <img class="w-full h-40 object-cover rounded-xl mb-4" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="Secure technology workspace" />
+                    <!-- Project 2: DNS & DHCP Server -->
+                    <article class="note-card glass-card p-5 md:p-6 rounded-2xl overflow-hidden border-l-4 border-l-[var(--warm)]">
+                        <img class="w-full h-36 md:h-40 object-cover rounded-xl mb-4" src="./dns&dhcp.jpeg" alt="Windows Server" />
                         <div class="flex items-center gap-3 mb-4">
-                            <span class="material-symbols-outlined text-[var(--accent)]">lock</span>
-                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)]">Secure Practice</h3>
+                            <span class="material-symbols-outlined text-[var(--accent)]">dns</span>
+                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)]">DNS &amp; DHCP Server</h3>
                         </div>
-                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Every route is documented with layered backups, encrypted notes, and traceable evidence logs so the story stays recoverable.</p>
-                        <div class="mt-5 flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Encrypted</span>
-                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Backups</span>
-                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Audit</span>
+                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Active Directory, DNS Forwarding, phân quyền người dùng và nhóm trên Windows Server.</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Windows Server</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">AD</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">DNS</span>
                         </div>
                     </article>
 
-                    <article class="note-card glass-card p-6 rounded-2xl overflow-hidden">
-                        <img class="w-full h-40 object-cover rounded-xl mb-4" src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80" alt="Outdoor expedition path" />
+                    <!-- Project 3: pfSense Firewall + Suricata -->
+                    <article class="note-card glass-card p-5 md:p-6 rounded-2xl overflow-hidden border-l-4 border-l-[var(--accent-light)]">
+                        <img class="w-full h-36 md:h-40 object-cover rounded-xl mb-4" src="./pfsense.png" alt="pfSense Firewall" />
                         <div class="flex items-center gap-3 mb-4">
-                            <span class="material-symbols-outlined text-[var(--accent)]">travel_explore</span>
-                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)]">Next Route</h3>
+                            <span class="material-symbols-outlined text-[var(--accent)]">security</span>
+                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)]">pfSense &amp; Suricata</h3>
                         </div>
-                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">The next expedition focus is on edge infrastructure, public transit telemetry, and low-profile communications in remote regions.</p>
-                        <a href="blog.html" class="inline-flex items-center gap-2 mt-5 text-[var(--accent)] font-label-sm text-label-sm font-bold">
-                            Open expedition log
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </a>
-                    </article>
-
-                    <article class="note-card glass-card p-6 rounded-2xl overflow-hidden">
-                        <img class="w-full h-40 object-cover rounded-xl mb-4" src="https://images.unsplash.com/photo-1517817748495-8e3b5e070315?auto=format&fit=crop&w=900&q=80" alt="Data terminal display" />
-                        <div class="flex items-center gap-3 mb-4">
-                            <span class="material-symbols-outlined text-[var(--accent)]">insights</span>
-                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)]">Field Intelligence</h3>
-                        </div>
-                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Snapshots of live telemetry and field observations, cross-referenced with network anomalies and route integrity checks.</p>
-                        <div class="mt-5 flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Telemetry</span>
-                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Signals</span>
-                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Analysis</span>
+                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Triển khai pfSense HA với CARP, failover dưới 3 giây, tích hợp Suricata IDS/IPS giám sát traffic.</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">pfSense</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Suricata</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">CARP</span>
                         </div>
                     </article>
 
-                    <article class="note-card glass-card p-6 rounded-2xl overflow-hidden">
-                        <img class="w-full h-40 object-cover rounded-xl mb-4" src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=80" alt="Secure glass dashboard" />
+                    <!-- Project 4: Web Server HA & Load Balancing -->
+                    <article class="note-card glass-card p-5 md:p-6 rounded-2xl overflow-hidden border-l-4 border-l-[var(--warm-light)]">
+                        <img class="w-full h-36 md:h-40 object-cover rounded-xl mb-4" src="./web-lb.jpg" alt="Load Balancing" />
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="material-symbols-outlined text-[var(--accent)]">balance</span>
+                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)]">Web Server HA &amp; LB</h3>
+                        </div>
+                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Cụm Web Server HA, Load Balancer phân chia tải, kỹ thuật che giấu IP thật của server.</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">HA</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Load Balancer</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">IP Obfuscation</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 5: Monitoring & Logging -->
+                    <article class="note-card glass-card p-5 md:p-6 rounded-2xl overflow-hidden border-l-4 border-l-[var(--accent)]">
+                        <img class="w-full h-36 md:h-40 object-cover rounded-xl mb-4" src="./monitoring-checkmk.png" alt="Monitoring Dashboard" />
                         <div class="flex items-center gap-3 mb-4">
                             <span class="material-symbols-outlined text-[var(--accent)]">monitoring</span>
-                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)]">System Pulse</h3>
+                            <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)]">Monitoring &amp; Logging</h3>
                         </div>
-                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Real-time infrastructure checks and system pulse reports reveal how active routes behave across distributed locations.</p>
-                        <div class="mt-5 flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Monitoring</span>
-                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Health</span>
-                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Status</span>
+                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Thực hành ELK Stack, Grafana, CheckMK để giám sát và phân tích log hệ thống.</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">ELK</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Grafana</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">CheckMK</span>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="px-6 md:px-16 max-w-7xl mx-auto pb-16 md:pb-24 fade-in-up delay-400">
-            <div class="glass-card p-6 md:p-8 rounded-3xl overflow-hidden">
+<!-- ===== SECTION: Route Gallery ===== -->
+        <section class="px-4 md:px-16 max-w-7xl mx-auto fade-in-up delay-400">
+            <div class="glass-card p-5 md:p-8 rounded-3xl overflow-hidden">
                 <div class="flex flex-col lg:flex-row gap-8">
                     <div class="lg:w-3/5">
                         <div class="flex items-center justify-between mb-4">
                             <div>
-                                <h2 class="section-title text-[var(--text-primary)]">Route Gallery</h2>
-                                <p class="font-label-sm text-label-sm text-[var(--text-secondary)] mt-2 uppercase tracking-widest">Swipe through four visual scenes</p>
+                                <h2 class="section-title text-[var(--text-primary)]">Hoạt động <span class="highlight">sinh viên</span></h2>
+                                <p class="font-label-sm text-label-sm text-[var(--text-secondary)] mt-2 uppercase tracking-widest">Những trải nghiệm đáng nhớ trong hành trình học tập</p>
                             </div>
                             <div class="flex gap-2">
-                                <button type="button" data-action="prev" class="w-10 h-10 rounded-full border border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--accent)]/10 hover:text-[var(--accent)] transition-all" aria-label="Previous image">
+                                <button type="button" data-action="prev" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--accent)]/10 hover:text-[var(--accent)] transition-all" aria-label="Previous image">
                                     <span class="material-symbols-outlined">arrow_back</span>
                                 </button>
-                                <button type="button" data-action="next" class="w-10 h-10 rounded-full border border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--accent)]/10 hover:text-[var(--accent)] transition-all" aria-label="Next image">
+                                <button type="button" data-action="next" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--accent)]/10 hover:text-[var(--accent)] transition-all" aria-label="Next image">
                                     <span class="material-symbols-outlined">arrow_forward</span>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="relative rounded-2xl overflow-hidden border border-[var(--border-color)]/70 bg-[var(--bg-secondary)]">
-                            <div class="gallery-slide active">
-                                <img class="w-full h-[320px] md:h-[420px] object-cover" src="./pic6.jpeg" alt="Mountain route" />
-                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--bg-primary)]/90 to-transparent p-6">
-                                    <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Scene 01</p>
-                                    <h3 class="text-xl font-bold text-[var(--text-primary)] mt-2">Highland trail</h3>
+                        <div class="gallery-stage relative rounded-2xl overflow-hidden border border-[var(--border-color)]/70 bg-[var(--bg-secondary)]">
+                            <div class="gallery-track">
+                                <div class="gallery-slide">
+                                    <img class="w-full h-[280px] md:h-[420px] object-cover" src="./pic6.jpeg" alt="Workshop chuyên ngành" />
+                                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--bg-primary)]/90 to-transparent p-5 md:p-6">
+                                        <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Hoạt động 01</p>
+                                        <h3 class="text-lg md:text-xl font-bold text-[var(--text-primary)] mt-2">Tham gia Workshop</h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gallery-slide">
-                                <img class="w-full h-[320px] md:h-[420px] object-cover" src="./pic2.jpeg" alt="Coastal horizon" />
-                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--bg-primary)]/90 to-transparent p-6">
-                                    <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Scene 02</p>
-                                    <h3 class="text-xl font-bold text-[var(--text-primary)] mt-2">Coastal horizon</h3>
+                                <div class="gallery-slide">
+                                    <img class="w-full h-[280px] md:h-[420px] object-cover" src="./pic2.jpeg" alt="Hoạt động ngoại khóa" />
+                                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--bg-primary)]/90 to-transparent p-5 md:p-6">
+                                        <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Hoạt động 02</p>
+                                        <h3 class="text-lg md:text-xl font-bold text-[var(--text-primary)] mt-2">Ngoại khóa trường</h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gallery-slide">
-                                <img class="w-full h-[320px] md:h-[420px] object-cover" src="./pic3.jpeg" alt="Forest path" />
-                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--bg-primary)]/90 to-transparent p-6">
-                                    <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Scene 03</p>
-                                    <h3 class="text-xl font-bold text-[var(--text-primary)] mt-2">Forest path</h3>
+                                <div class="gallery-slide">
+                                    <img class="w-full h-[280px] md:h-[420px] object-cover" src="./pic3.jpeg" alt="Câu lạc bộ" />
+                                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--bg-primary)]/90 to-transparent p-5 md:p-6">
+                                        <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Hoạt động 03</p>
+                                        <h3 class="text-lg md:text-xl font-bold text-[var(--text-primary)] mt-2">Câu lạc bộ</h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gallery-slide">
-                                <img class="w-full h-[320px] md:h-[420px] object-cover" src="./pic4.jpeg" alt="Urban skyline" />
-                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--bg-primary)]/90 to-transparent p-6">
-                                    <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Scene 04</p>
-                                    <h3 class="text-xl font-bold text-[var(--text-primary)] mt-2">Urban skyline</h3>
+                                <div class="gallery-slide">
+                                    <img class="w-full h-[280px] md:h-[420px] object-cover" src="./pic4.jpeg" alt="Tổ chức hoạt động sinh viên" />
+                                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--bg-primary)]/90 to-transparent p-5 md:p-6">
+                                        <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Hoạt động 04</p>
+                                        <h3 class="text-lg md:text-xl font-bold text-[var(--text-primary)] mt-2">Tổ chức sự kiện</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="flex items-center justify-center gap-2 mt-4">
-                            <button type="button" class="gallery-dot active w-2.5 h-2.5 rounded-full bg-[var(--border-color)] transition-all" data-slide="0" aria-label="Go to image 1"></button>
-                            <button type="button" class="gallery-dot w-2.5 h-2.5 rounded-full bg-[var(--border-color)] transition-all" data-slide="1" aria-label="Go to image 2"></button>
-                            <button type="button" class="gallery-dot w-2.5 h-2.5 rounded-full bg-[var(--border-color)] transition-all" data-slide="2" aria-label="Go to image 3"></button>
-                            <button type="button" class="gallery-dot w-2.5 h-2.5 rounded-full bg-[var(--border-color)] transition-all" data-slide="3" aria-label="Go to image 4"></button>
+                            <button type="button" class="gallery-dot active w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[var(--border-color)] transition-all" data-slide="0" aria-label="Go to image 1"></button>
+                            <button type="button" class="gallery-dot w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[var(--border-color)] transition-all" data-slide="1" aria-label="Go to image 2"></button>
+                            <button type="button" class="gallery-dot w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[var(--border-color)] transition-all" data-slide="2" aria-label="Go to image 3"></button>
+                            <button type="button" class="gallery-dot w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[var(--border-color)] transition-all" data-slide="3" aria-label="Go to image 4"></button>
                         </div>
                     </div>
 
                     <div class="lg:w-2/5 flex flex-col justify-between gap-4">
                         <div class="space-y-3">
                             <div class="gallery-info-card active rounded-2xl border border-[var(--border-color)]/70 bg-[var(--bg-secondary)]/70 p-4">
-                                <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Focus 01</p>
-                                <h3 class="mt-2 text-lg font-semibold text-[var(--text-primary)]">Altitude notes</h3>
-                                <p class="mt-2 text-sm text-[var(--text-secondary)]">A quiet ridge line that frames the route with a calm, cinematic atmosphere.</p>
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Workshop</p>
+                                <h3 class="mt-2 text-lg font-semibold text-[var(--text-primary)]">Học hỏi từ chuyên gia</h3>
+                                <p class="mt-2 text-sm text-[var(--text-secondary)]">Tham gia các buổi workshop về mạng máy tính, bảo mật và công nghệ thông tin, tiếp cận kiến thức thực tế từ các diễn giả trong ngành.</p>
                             </div>
                             <div class="gallery-info-card rounded-2xl border border-[var(--border-color)]/70 bg-[var(--bg-secondary)]/70 p-4">
-                                <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Focus 02</p>
-                                <h3 class="mt-2 text-lg font-semibold text-[var(--text-primary)]">Signal shore</h3>
-                                <p class="mt-2 text-sm text-[var(--text-secondary)]">The edge of a coastline where radio reflections and weather patterns meet.</p>
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Ngoại khóa</p>
+                                <h3 class="mt-2 text-lg font-semibold text-[var(--text-primary)]">Kết nối cộng đồng</h3>
+                                <p class="mt-2 text-sm text-[var(--text-secondary)]">Tham gia các hoạt động ngoại khóa do trường tổ chức, giao lưu với sinh viên các ngành và mở rộng mối quan hệ.</p>
                             </div>
                             <div class="gallery-info-card rounded-2xl border border-[var(--border-color)]/70 bg-[var(--bg-secondary)]/70 p-4">
-                                <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Focus 03</p>
-                                <h3 class="mt-2 text-lg font-semibold text-[var(--text-primary)]">Forest archive</h3>
-                                <p class="mt-2 text-sm text-[var(--text-secondary)]">Dense tree cover and low-light tones that suggest slower, deeper observation.</p>
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Câu lạc bộ</p>
+                                <h3 class="mt-2 text-lg font-semibold text-[var(--text-primary)]">Đam mê & Sáng tạo</h3>
+                                <p class="mt-2 text-sm text-[var(--text-secondary)]">Tham gia các câu lạc bộ học thuật, cùng chia sẻ kiến thức, thực hành kỹ năng và phát triển bản thân trong môi trường năng động.</p>
                             </div>
                             <div class="gallery-info-card rounded-2xl border border-[var(--border-color)]/70 bg-[var(--bg-secondary)]/70 p-4">
-                                <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Focus 04</p>
-                                <h3 class="mt-2 text-lg font-semibold text-[var(--text-primary)]">Urban relay</h3>
-                                <p class="mt-2 text-sm text-[var(--text-secondary)]">A dense skyline where movement and human activity create constant signal layers.</p>
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">Tổ chức</p>
+                                <h3 class="mt-2 text-lg font-semibold text-[var(--text-primary)]">Dẫn dắt & Kết nối</h3>
+                                <p class="mt-2 text-sm text-[var(--text-secondary)]">Tham gia tổ chức các hoạt động và sự kiện cho sinh viên khoa, rèn luyện kỹ năng quản lý, làm việc nhóm và lãnh đạo.</p>
                             </div>
                         </div>
                         <a href="blog.html" class="inline-flex items-center gap-2 text-[var(--accent)] font-label-sm text-label-sm font-bold">
-                            Open the full archive
+                            Xem thêm hoạt động
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- ===== SECTION: Skills & Certifications ===== -->
+        <section class="px-4 md:px-16 max-w-7xl mx-auto py-12 md:py-16 fade-in-up delay-200">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 md:mb-10">
+                <div>
+                    <h2 class="section-title text-[var(--text-primary)]">Kỹ năng <span class="highlight">&amp; Chứng chỉ</span></h2>
+                    <p class="font-label-sm text-label-sm text-[var(--text-secondary)] mt-2 uppercase tracking-widest">Những công cụ và thành tựu đã đạt được</p>
+                </div>
+                <a href="about.html" class="text-[var(--accent)] font-label-sm text-label-sm hover:underline font-bold">XEM HỒ SƠ ĐẦY ĐỦ</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <!-- Skills bars -->
+                <div class="glass-card p-5 md:p-6 rounded-2xl space-y-5">
+                    <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)] flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[var(--accent)]">terminal</span>
+                        Technical Proficiency
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm text-[var(--text-secondary)]"><span>Network Security</span><span>85%</span></div>
+                            <div class="w-full h-2 bg-[var(--border-color)] rounded-full overflow-hidden mt-1">
+                                <div class="h-full rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)]" style="width:85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-[var(--text-secondary)]"><span>Linux Administration</span><span>78%</span></div>
+                            <div class="w-full h-2 bg-[var(--border-color)] rounded-full overflow-hidden mt-1">
+                                <div class="h-full rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)]" style="width:78%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-[var(--text-secondary)]"><span>Python Scripting</span><span>70%</span></div>
+                            <div class="w-full h-2 bg-[var(--border-color)] rounded-full overflow-hidden mt-1">
+                                <div class="h-full rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)]" style="width:70%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-[var(--text-secondary)]"><span>Wireshark &amp; Packet Analysis</span><span>82%</span></div>
+                            <div class="w-full h-2 bg-[var(--border-color)] rounded-full overflow-hidden mt-1">
+                                <div class="h-full rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)]" style="width:82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="glass-card p-5 md:p-6 rounded-2xl space-y-4">
+                    <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--text-primary)] flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[var(--warm)]">verified</span>
+                        Certifications
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-3 rounded-xl bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] hover:border-[var(--accent)] transition-all">
+                            <span class="material-symbols-outlined text-[var(--accent)]">badge</span>
+                            <div>
+                                <p class="text-sm font-semibold text-[var(--text-primary)]">Google Cybersecurity Professional</p>
+                                <p class="text-xs text-[var(--text-muted)]">2023 · Google Career Certificates</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 rounded-xl bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] hover:border-[var(--accent)] transition-all">
+                            <span class="material-symbols-outlined text-[var(--warm)]">badge</span>
+                            <div>
+                                <p class="text-sm font-semibold text-[var(--text-primary)]">CCNA: Introduction to Networks</p>
+                                <p class="text-xs text-[var(--text-muted)]">2022 · Cisco Networking Academy</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 p-3 rounded-xl bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] hover:border-[var(--accent)] transition-all">
+                            <span class="material-symbols-outlined text-[var(--accent-light)]">badge</span>
+                            <div>
+                                <p class="text-sm font-semibold text-[var(--text-primary)]">Linux Essentials</p>
+                                <p class="text-xs text-[var(--text-muted)]">2021 · Linux Professional Institute</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-[var(--bg-secondary)] border-t border-[var(--border-color)]/50 transition-colors duration-300">
-        <div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-16 py-12 gap-6 max-w-7xl mx-auto">
-            <div class="text-center md:text-left">
-                <div class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)] mb-2">SANTO-RYU</div>
-                <p class="font-label-sm text-label-sm text-[var(--text-secondary)]">© 2024 SANTO-RYU. Trace the horizon.</p>
-            </div>
-            <nav class="flex flex-wrap justify-center gap-6 md:gap-8">
-                <a class="font-label-sm text-label-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-300 relative group" href="#">
-                    GitHub
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a class="font-label-sm text-label-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-300 relative group" href="#">
-                    Twitter
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a class="font-label-sm text-label-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-300 relative group" href="#">
-                    Email
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a class="font-label-sm text-label-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-300 relative group" href="#">
-                    RSS
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-            </nav>
-            <div class="flex items-center gap-3">
-                <div class="text-right hidden sm:block">
-                    <div class="text-[10px] font-label-sm text-[var(--text-secondary)] uppercase">Network Status</div>
-                    <div class="flex items-center gap-2 text-[var(--accent)]">
-                        <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
-                        <span class="text-xs font-bold uppercase tracking-widest">Encrypted Connection</span>
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[var(--bg-secondary)] border-t border-[var(--border-color)]/50 transition-colors duration-300 relative">
+        <!-- Decorative gradient line -->
+        <div class="h-1.5 w-full bg-gradient-to-r from-[var(--accent)] via-[var(--warm-light)] to-[var(--accent-light)] shadow-sm shadow-[var(--accent-glow)]"></div>
+        
+        <div class="px-4 md:px-16 py-10 md:py-12 gap-10 md:gap-12 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+                <!-- Left -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+                <div class="relative flex-shrink-0">
+                    <svg class="logo-svg" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+                        <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+                        <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+                        <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    </svg>
+                    <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="logo-text font-bold tracking-tight">
+                        <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                            giang
+                            <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+                        </span>
+                        <span class="logo-dot text-[var(--warm-light)] group-hover:text-[var(--accent)] transition-colors duration-300">.</span>
+                    </span>
+                    <span class="logo-sub font-label-sm text-[var(--text-muted)] uppercase group-hover:text-[var(--accent)] transition-colors duration-300">network & security</span>
+                </div>
+            </a>
                     </div>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mt-4 max-w-xs">
+                        Sinh viên Network & Security, đam mê xây dựng và bảo vệ hệ thống mạng hiện đại.
+                    </p>
+                    <div class="mt-6 flex gap-3">
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">mail</span>
+                        </a>
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">code</span>
+                        </a>
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">chat</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Middle -->
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--accent)] uppercase tracking-widest mb-5 md:mb-6 flex items-center gap-2 border-b border-[var(--border-color)]/50 pb-3">
+                        <span class="material-symbols-outlined text-[var(--accent)] text-base">explore</span>
+                        Khám phá
+                    </h4>
+                    <nav class="space-y-2.5">
+                        <a href="about.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Giới thiệu</a>
+                        <a href="archives.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Lịch sử Internet VN</a>
+                        <a href="blog.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Bài viết</a>
+                        <a href="tags.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Kho tư liệu</a>
+                    </nav>
+                </div>
+
+                <!-- Right -->
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--warm)] uppercase tracking-widest mb-5 md:mb-6 flex items-center gap-2 border-b border-[var(--border-color)]/50 pb-3">
+                        <span class="material-symbols-outlined text-[var(--warm)] text-base">contact_support</span>
+                        Liên hệ
+                    </h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] mt-0.5 flex-shrink-0 text-base">location_on</span>
+                            <div>
+                                <p class="text-[var(--text-secondary)]">523 Mai Đăng Chơn</p>
+                                <p class="text-[var(--text-secondary)]">Đà Nẵng, Việt Nam</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] text-base">phone</span>
+                            <a href="tel:+84837122005" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-medium">(083) 7122005</a>
+                        </div>
+                        <div class="flex items-center gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] text-base">mail</span>
+                            <a href="mailto:trinhthihuonggiang5002@gmail.com" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors text-xs break-all">trinhthihuonggiang5002@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="border-t border-[var(--border-color)]/50 pt-5 md:pt-6 mt-6 md:mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-widest">© 2026 Huong Giang. Network and Security.</p>
+                <div class="flex items-center gap-4 md:gap-6">
+                    <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse shadow-sm shadow-[var(--accent-glow)]"></span>
+                        Online
+                    </span>
+                    <a href="#" class="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Privacy</a>
+                    <a href="#" class="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Terms</a>
+                    <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[12px] text-[var(--accent)]">wifi</span>
+                        Secure
+                    </span>
                 </div>
             </div>
         </div>
@@ -700,8 +943,6 @@
         // Theme toggle
         const toggleBtn = document.getElementById('theme-toggle');
         const html = document.documentElement;
-        
-        // Load saved theme or default to light
         const savedTheme = localStorage.getItem('theme') || 'light';
         html.setAttribute('data-theme', savedTheme);
         
@@ -724,13 +965,13 @@
         const slides = Array.from(document.querySelectorAll('.gallery-slide'));
         const dots = Array.from(document.querySelectorAll('.gallery-dot'));
         const infoCards = Array.from(document.querySelectorAll('.gallery-info-card'));
+        const galleryTrack = document.querySelector('.gallery-track');
         let currentSlide = 0;
+        let autoplayTimer;
 
         function showSlide(index) {
             currentSlide = (index + slides.length) % slides.length;
-            slides.forEach((slide, slideIndex) => {
-                slide.classList.toggle('active', slideIndex === currentSlide);
-            });
+            galleryTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
             dots.forEach((dot, dotIndex) => {
                 dot.classList.toggle('active', dotIndex === currentSlide);
             });
@@ -739,19 +980,32 @@
             });
         }
 
+        function startAutoplay() {
+            clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 4200);
+        }
+
         document.querySelectorAll('[data-action]').forEach((button) => {
             button.addEventListener('click', () => {
                 const direction = button.getAttribute('data-action') === 'next' ? 1 : -1;
                 showSlide(currentSlide + direction);
+                startAutoplay();
             });
         });
 
         dots.forEach((dot) => {
             dot.addEventListener('click', () => {
                 showSlide(Number(dot.getAttribute('data-slide')));
+                startAutoplay();
             });
         });
 
+        showSlide(0);
+        startAutoplay();
+
+        // Note carousel
         const noteCards = Array.from(document.querySelectorAll('.note-card'));
         const noteTrack = document.querySelector('.notes-track');
         const visibleNotes = 3;
@@ -760,7 +1014,7 @@
 
         function getSlideWidth() {
             const cardWidth = noteCards[0]?.getBoundingClientRect().width || 0;
-            return cardWidth + 24; // 24px gap
+            return cardWidth + 24;
         }
 
         function buildLoopedTrack() {

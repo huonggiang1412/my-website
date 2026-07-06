@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Nhiệm kỳ BCH Khoa KTMT&ĐT | Huong Giang</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-primary: #ecf7f9; --bg-secondary: #f7fbfc; --bg-card: rgba(255,255,255,0.88); --text-primary: #0b2a35; --text-secondary: #3d5a6b; --text-muted: #7a9aaa; --accent: #0d9488; --accent-light: #2dd4bf; --warm: #f59e0b; --warm-light: #fbbf24; --border-color: #c8dce4; --shadow: 0 20px 50px rgba(13,148,136,0.10); --accent-glow: rgba(13,148,136,0.20); }
+        [data-theme="dark"] { --bg-primary: #08141e; --bg-secondary: #0f1d2a; --bg-card: rgba(15,29,42,0.88); --text-primary: #d6edf5; --text-secondary: #9ab9c9; --text-muted: #5d8395; --accent: #5eead4; --accent-light: #2dd4bf; --warm: #fbbf24; --warm-light: #fcd34d; --border-color: #2a4250; --shadow: 0 20px 50px rgba(0,0,0,0.40); --accent-glow: rgba(94,234,212,0.16); }
+        body { font-family: 'Manrope', sans-serif; background-color: var(--bg-primary); color: var(--text-primary); transition: background-color 0.4s, color 0.4s; padding-top: 64px; line-height: 1.8; font-size: 16px; }
+        body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 0% 20%, rgba(13,148,136,0.06) 0%, transparent 50%), radial-gradient(circle at 100% 80%, rgba(245,158,11,0.04) 0%, transparent 50%); pointer-events: none; }
+        [data-theme="dark"] body::before { background: radial-gradient(circle at 0% 20%, rgba(94,234,212,0.06) 0%, transparent 50%), radial-gradient(circle at 100% 80%, rgba(251,191,36,0.04) 0%, transparent 50%); }
+        .glass-card { background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid rgba(13,148,136,0.10); box-shadow: var(--shadow); transition: all 0.3s; }
+        .glass-card:hover { border-color: var(--accent-light); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        .theme-icon-dark { display: none; } [data-theme="dark"] .theme-icon-light { display: none; } [data-theme="dark"] .theme-icon-dark { display: block; }
+        .theme-toggle { background: none; border: none; cursor: pointer; padding: 8px; border-radius: 50%; transition: background 0.3s; color: var(--text-secondary); }
+        .theme-toggle:hover { background: rgba(13,148,136,0.10); }
+        .blog-content h2 { font-size: clamp(1.5rem, 2.2vw, 2rem); margin-top: 2.5rem; margin-bottom: 1rem; color: var(--accent); font-weight: 700; letter-spacing: -0.02em; }
+        .blog-content h3 { font-size: clamp(1.2rem, 1.6vw, 1.4rem); margin-top: 1.8rem; margin-bottom: 0.75rem; font-weight: 600; }
+        .blog-content p { margin-bottom: 1.25rem; color: var(--text-secondary); font-size: 1.05rem; }
+        .blog-content ul { margin: 1rem 0 1.5rem 1.8rem; }
+        .blog-content li { margin-bottom: 0.6rem; color: var(--text-secondary); }
+        .blog-content .highlight-box { background: var(--bg-card); border-left: 5px solid var(--accent); padding: 1.2rem 1.8rem; border-radius: 0.5rem; margin: 1.8rem 0; }
+        .blog-content .highlight-box p { margin-bottom: 0; font-size: 1.05rem; }
+        .blog-content img { border-radius: 0.75rem; margin: 1.8rem 0; width: 100%; max-height: 420px; object-fit: cover; box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--bg-primary); } ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; } ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        .logo-text { font-size: clamp(1.1rem, 1.4vw, 1.4rem); line-height: 1.2; font-weight: 700; }
+        .logo-dot { font-size: clamp(1.4rem, 1.8vw, 1.8rem); }
+        .logo-sub { font-size: clamp(0.5rem, 0.6vw, 0.65rem); letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); }
+        .logo-svg { width: clamp(2rem, 2.4vw, 2.5rem); height: clamp(2rem, 2.4vw, 2.5rem); }
+        .author-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+        .progress-bar { position: fixed; top: 64px; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--warm-light)); z-index: 49; transition: width 0.1s; }
+        .footer-simple { border-top: 1px solid var(--border-color); padding: 2rem 0; text-align: center; color: var(--text-muted); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; }
+        .blog-sidebar { position: sticky; top: 84px; }
+        @media (max-width: 1024px) { .blog-sidebar { position: static; } }
+    </style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar" style="width:0%;"></div>
+
+<!-- ===== HEADER ===== -->
+<header class="fixed top-0 w-full z-50 bg-[var(--bg-secondary)]/80 backdrop-blur-xl border-b border-[var(--border-color)]/50 shadow-sm transition-colors duration-300">
+    <div class="flex justify-between items-center h-14 md:h-16 px-4 md:px-16 max-w-7xl mx-auto">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+            <div class="relative flex-shrink-0">
+                <svg class="logo-svg" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+                    <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+                    <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+                    <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+                    <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+                    <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                </svg>
+                <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+            <div class="flex flex-col leading-tight">
+                <span class="logo-text font-bold tracking-tight">
+                    <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                        giang
+                        <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+                    </span>
+                    <span class="logo-dot text-[var(--warm-light)] group-hover:text-[var(--accent)] transition-colors duration-300">.</span>
+                </span>
+                <span class="logo-sub">network & security</span>
+            </div>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium">
+            <a href="index.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span></a>
+            <a href="blog.html" class="text-[var(--accent)] font-bold border-b-2 border-[var(--accent)] py-1">Blog</a>
+            <a href="tags.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">Tags<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span></a>
+            <a href="archives.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">Archives<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span></a>
+            <a href="about.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span></a>
+        </nav>
+
+        <!-- Right -->
+        <div class="flex items-center gap-2 md:gap-3">
+            <button id="theme-toggle" class="theme-toggle p-1.5 md:p-2 rounded-full hover:bg-[var(--border-color)]/30 transition-all" aria-label="Toggle theme">
+                <span class="material-symbols-outlined theme-icon-light text-[var(--text-secondary)] text-xl md:text-2xl">light_mode</span>
+                <span class="material-symbols-outlined theme-icon-dark text-[var(--text-secondary)] text-xl md:text-2xl">dark_mode</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ===== BLOG CONTENT – LAYOUT RỘNG ===== -->
+<main class="px-4 md:px-16 max-w-7xl mx-auto py-8 md:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Main Article – chiếm 9/12 cột -->
+        <article class="lg:col-span-9">
+            <div class="glass-card p-6 md:p-8 lg:p-10 rounded-2xl">
+                <!-- Header -->
+                <div class="mb-6">
+                    <div class="flex items-center gap-3 text-sm text-[var(--text-muted)] uppercase tracking-widest">
+                        <span>Oct 15, 2024</span>
+                        <span class="w-1 h-1 rounded-full bg-[var(--accent)]"></span>
+                        <span class="text-[var(--accent)]">Kỷ niệm</span>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mt-3 leading-tight">
+                        Nhiệm kỳ thành viên Ban Chấp hành Khoa Kỹ thuật Máy tính và Điện tử
+                    </h1>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">BCH</span>
+                        <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Khoa KTMT&ĐT</span>
+                        <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Kỷ niệm</span>
+                    </div>
+                </div>
+
+                <!-- Featured Image -->
+                <img src="./pic1.jpeg" alt="Ban Chấp hành Khoa KTMT&ĐT" class="w-full h-72 md:h-96 object-cover rounded-xl mb-6" />
+
+                <!-- Body -->
+                <div class="blog-content">
+                    <p>
+                        <span class="text-[var(--accent)] font-bold">Khi tôi nhận được thông báo trúng cử vào Ban Chấp hành Khoa Kỹ thuật Máy tính và Điện tử, cảm xúc đầu tiên là vỡ òa.</span> 
+                        Không chỉ vì đó là một vị trí danh dự, mà bởi vì nó đánh dấu cột mốc đầu tiên tôi thực sự bước ra khỏi vùng an toàn của mình – từ một sinh viên khá rụt rè, trở thành một người có tiếng nói trong tập thể.
+                    </p>
+
+                    <img src="./bch1.jpg" alt="Hoạt động BCH" class="w-full h-64 md:h-80 object-cover rounded-xl" />
+
+                    <h2>1. Lý do ứng cử – Không chỉ là danh hiệu</h2>
+                    <p>
+                        Nhiều người hỏi tôi: “Sao lại ứng cử? Không sợ áp lực à?”. Thực ra, tôi cũng từng nghĩ vậy. Nhưng khi chứng kiến những hoạt động của BCH khóa trước, tôi thấy rằng đây là cơ hội để học hỏi, để đóng góp và để kết nối. Tôi muốn được làm những điều có ý nghĩa cho khoa, cho sinh viên, và quan trọng nhất – cho chính mình.
+                    </p>
+                    <div class="highlight-box">
+                        <p class="!text-[var(--text-primary)] font-medium">“Ứng cử không chỉ là để có một dòng trong CV, mà là để trải nghiệm những điều mà sách vở không dạy.”</p>
+                    </div>
+                    <p>
+                        Tôi đã viết bản kế hoạch hành động với những mục tiêu cụ thể: cải thiện chất lượng các buổi workshop, tạo sân chơi học thuật, và đặc biệt là lắng nghe ý kiến của sinh viên để đề xuất lên khoa những thay đổi thực sự cần thiết. Và tôi đã được tín nhiệm.
+                    </p>
+
+                    <h2>2. Những hoạt động và trách nhiệm</h2>
+                    <p>
+                        Nhiệm kỳ kéo dài một năm, nhưng dường như mọi thứ diễn ra rất nhanh. Công việc của một ủy viên BCH không chỉ là ngồi họp, mà còn là tổ chức, là hỗ trợ, là đứng trước đám đông để nói lên ý kiến của mình.
+                    </p>
+                    <ul>
+                        <li><strong>Workshop “Hành trang kỹ sư mạng”:</strong> Tôi được giao phụ trách tổ chức buổi chia sẻ về định hướng nghề nghiệp trong lĩnh vực mạng và bảo mật. Đây là lần đầu tiên tôi đứng ra liên hệ với diễn giả, lo từ A đến Z về hậu cần. Kết quả là hơn 100 bạn sinh viên tham gia, và phản hồi rất tích cực.</li>
+                        <li><strong>Ngày hội kỹ thuật:</strong> Cùng BCH tổ chức một sân chơi nhỏ về mô hình mạng và an ninh mạng. Tôi đảm nhận khâu thiết kế các thử thách lab cơ bản. Nhìn các bạn hào hứng cấu hình router, ping thử nghiệm, tôi biết mình đã làm đúng việc.</li>
+                        <li><strong>Đối thoại với khoa:</strong> Thu thập ý kiến của sinh viên về chương trình đào tạo, về cơ sở vật chất, rồi tổng hợp thành bản đề xuất gửi lên lãnh đạo khoa. Có những ý kiến tưởng nhỏ nhưng thực tế đã được lắng nghe và thay đổi.</li>
+                    </ul>
+                    <p>
+                        Công việc không bao giờ suôn sẻ cả. Có những buổi họp kéo dài đến khuya, những lúc căng thẳng vì deadline, và cả những lần tôi phải đứng trước hội trường đông người để trình bày một kế hoạch mà tôi chưa thực sự tự tin. Nhưng chính những khoảnh khắc ấy đã tôi luyện cho tôi sự bình tĩnh và bản lĩnh hơn.
+                    </p>
+
+                    <img src="./why-network-3.jpg" alt="Kỷ niệm BCH" class="w-full h-64 md:h-80 object-cover rounded-xl" />
+
+                    <h2>3. Những kỷ niệm không thể nào quên</h2>
+                    <p>
+                        Tôi nhớ lần đầu tiên phát biểu trước toàn khoa – tay run cầm cập, giọng hơi lắp. Nhưng khi nhìn xuống hàng ghế bạn bè, thấy những gương mặt quen thuộc gật đầu khích lệ, tôi bỗng thấy mình mạnh mẽ hơn. Tôi nhớ những buổi tối cùng đồng đội ngồi lại sửa bản kế hoạch, vừa làm vừa cười đùa, vừa nghĩ ra những ý tưởng điên rồ.
+                    </p>
+                    <div class="highlight-box">
+                        <p class="!text-[var(--text-primary)] font-medium">“Có những người bạn không phải bạn cùng lớp, nhưng là đồng đội trong BCH – và họ trở thành những người bạn thân nhất của tôi.”</p>
+                    </div>
+                    <p>
+                        Rồi buổi lễ tổng kết nhiệm kỳ, khi nhận được giấy chứng nhận và những tràng pháo tay, tôi bật khóc – không phải vì buồn, mà vì biết rằng mình đã sống trọn một năm đáng nhớ. Những gì tôi học được không nằm trong giáo trình, nhưng lại là thứ tôi mang theo mãi mãi: kỹ năng tổ chức, làm việc nhóm, thuyết trình, và trên hết là sự tự tin.
+                    </p>
+
+                    <h2>4. Bài học cho chặng đường phía trước</h2>
+                    <p>
+                        Nhiệm kỳ kết thúc, nhưng tinh thần của nó vẫn còn. Tôi nhận ra rằng một người kỹ sư giỏi không chỉ cần kiến thức chuyên môn, mà còn cần khả năng làm việc với con người, khả năng lắng nghe và thấu hiểu. Những buổi đối thoại, những cuộc họp, những lần thuyết trình – tất cả đã rèn cho tôi một phong thái chững chạc, một tư duy cầu thị và một trái tim biết đồng cảm.
+                    </p>
+                    <p>
+                        Giờ đây, khi nhìn lại, tôi biết rằng quyết định ứng cử là một trong những quyết định đúng đắn nhất của đời sinh viên. Và tôi khuyến khích các bạn – nếu có cơ hội, hãy thử bước ra khỏi vùng an toàn. Bởi chính ở đó, những điều kỳ diệu mới thực sự bắt đầu.
+                    </p>
+                </div>
+
+                <!-- Navigation between posts -->
+                <div class="mt-12 pt-6 border-t border-[var(--border-color)]/50 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <a href="index.html" class="text-[var(--accent)] hover:underline font-medium flex items-center gap-2 text-sm">
+                        <span class="material-symbols-outlined">arrow_back</span> Quay lại trang chủ
+                    </a>
+                    <a href="blog2.html" class="text-[var(--accent)] hover:underline font-medium flex items-center gap-2 text-sm">
+                        Bài tiếp theo: Tại sao nên học mạng? <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Sidebar – chiếm 3/12 cột -->
+        <aside class="lg:col-span-3 space-y-6 blog-sidebar">
+            <!-- Author Card -->
+            <div class="glass-card p-5 rounded-2xl text-center">
+                <img src="./av.jpg" alt="Huong Giang" class="author-avatar mx-auto mb-3" />
+                <h4 class="font-bold text-[var(--text-primary)]">Hương Giang</h4>
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-wider">Intern Network & Security</p>
+                <div class="mt-3 flex justify-center gap-3">
+                    <a href="#" class="text-[var(--text-muted)] hover:text-[var(--accent)]"><span class="material-symbols-outlined text-sm">mail</span></a>
+                    <a href="#" class="text-[var(--text-muted)] hover:text-[var(--accent)]"><span class="material-symbols-outlined text-sm">code</span></a>
+                    <a href="#" class="text-[var(--text-muted)] hover:text-[var(--accent)]"><span class="material-symbols-outlined text-sm">chat</span></a>
+                </div>
+            </div>
+
+            <!-- Reading stats -->
+            <div class="glass-card p-4 rounded-2xl space-y-2 text-sm">
+                <div class="flex items-center justify-between text-[var(--text-secondary)]">
+                    <span>⏱️ Thời gian đọc</span>
+                    <span class="font-medium text-[var(--text-primary)]">4 phút</span>
+                </div>
+                <div class="flex items-center justify-between text-[var(--text-secondary)]">
+                    <span>📅 Xuất bản</span>
+                    <span class="font-medium text-[var(--text-primary)]">15/10/2024</span>
+                </div>
+                <div class="flex items-center justify-between text-[var(--text-secondary)]">
+                    <span>🏷️ Chủ đề</span>
+                    <span class="font-medium text-[var(--text-primary)]">Kỷ niệm</span>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="glass-card p-4 rounded-2xl">
+                <h5 class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest mb-3">Thẻ liên quan</h5>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-2 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] text-[var(--text-secondary)]">#BCH</span>
+                    <span class="px-2 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] text-[var(--text-secondary)]">#KhoaKTMT</span>
+                    <span class="px-2 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] text-[var(--text-secondary)]">#SinhViên</span>
+                    <span class="px-2 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] text-[var(--text-secondary)]">#KỷNiệm</span>
+                </div>
+            </div>
+
+            <!-- Recent posts -->
+            <div class="glass-card p-4 rounded-2xl">
+                <h5 class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest mb-3">Bài viết gần đây</h5>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="blog2.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">Tại sao nên học mạng?</a></li>
+                    <li><a href="blog1.html" class="text-[var(--accent)] font-medium">Nhiệm kỳ BCH Khoa KTMT&ĐT</a></li>
+                    <li><a href="blog3.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">Hành trình xây dựng mô hình mạng doanh nghiệp trên PNETLab</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[var(--bg-secondary)] border-t border-[var(--border-color)]/50 transition-colors duration-300 relative">
+        <!-- Decorative gradient line -->
+        <div class="h-1 w-full bg-gradient-to-r from-[var(--accent)] via-[var(--accent-light)] to-[var(--accent)] opacity-30"></div>
+        
+        <div class="px-4 md:px-16 py-10 md:py-12 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+                <!-- Left -->
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+                <div class="relative flex-shrink-0">
+                    <svg class="logo-svg" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+                        <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+                        <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+                        <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    </svg>
+                    <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="logo-text font-bold tracking-tight">
+                        <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                            giang
+                            <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+                        </span>
+                        <span class="logo-dot text-[var(--warm-light)] group-hover:text-[var(--accent)] transition-colors duration-300">.</span>
+                    </span>
+                    <span class="logo-sub font-label-sm text-[var(--text-muted)] uppercase group-hover:text-[var(--accent)] transition-colors duration-300">network & security</span>
+                </div>
+            </a>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mt-4 max-w-xs">
+                        Sinh viên Network & Security, đam mê xây dựng và bảo vệ hệ thống mạng hiện đại.
+                    </p>
+                    <div class="mt-6 flex gap-3">
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">mail</span>
+                        </a>
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">code</span>
+                        </a>
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">chat</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Middle -->
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--accent)] uppercase tracking-widest mb-5 md:mb-6 flex items-center gap-2 border-b border-[var(--border-color)]/50 pb-3">
+                        <span class="material-symbols-outlined text-[var(--accent)] text-base">explore</span>
+                        Khám phá
+                    </h4>
+                    <nav class="space-y-2.5">
+                        <a href="about.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Giới thiệu</a>
+                        <a href="archives.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Lịch sử Internet VN</a>
+                        <a href="blog.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Bài viết</a>
+                        <a href="tags.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Kho tư liệu</a>
+                    </nav>
+                </div>
+
+                <!-- Right -->
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--accent)] uppercase tracking-widest mb-5 md:mb-6 flex items-center gap-2 border-b border-[var(--border-color)]/50 pb-3">
+                        <span class="material-symbols-outlined text-[var(--accent)] text-base">contact_support</span>
+                        Liên hệ
+                    </h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] mt-0.5 flex-shrink-0 text-base">location_on</span>
+                            <div>
+                                <p class="text-[var(--text-secondary)]">523 Mai Đăng Chơn</p>
+                                <p class="text-[var(--text-secondary)]">Đà Nẵng, Việt Nam</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] text-base">phone</span>
+                            <a href="tel:+84837122005" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-medium">(083) 7122005</a>
+                        </div>
+                        <div class="flex items-center gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] text-base">mail</span>
+                            <a href="mailto:trinhthihuonggiang5002@gmail.com" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors text-xs break-all">trinhthihuonggiang5002@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="border-t border-[var(--border-color)]/50 pt-5 md:pt-6 mt-6 md:mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-widest">© 2026 Huong Giang. Network and Security.</p>
+                <div class="flex items-center gap-4 md:gap-6">
+                    <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse shadow-sm shadow-[var(--accent-glow)]"></span>
+                        Online
+                    </span>
+                    <a href="#" class="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Privacy</a>
+                    <a href="#" class="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Terms</a>
+                    <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[12px] text-[var(--accent)]">wifi</span>
+                        Secure
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+<script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    toggleBtn.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+    });
+</script>
+</body>
+</html>

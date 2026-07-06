@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Tại sao nên học mạng? | Huong Giang</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-primary: #ecf7f9; --bg-secondary: #f7fbfc; --bg-card: rgba(255,255,255,0.88); --text-primary: #0b2a35; --text-secondary: #3d5a6b; --text-muted: #7a9aaa; --accent: #0d9488; --accent-light: #2dd4bf; --warm: #f59e0b; --warm-light: #fbbf24; --border-color: #c8dce4; --shadow: 0 20px 50px rgba(13,148,136,0.10); --accent-glow: rgba(13,148,136,0.20); }
+        [data-theme="dark"] { --bg-primary: #08141e; --bg-secondary: #0f1d2a; --bg-card: rgba(15,29,42,0.88); --text-primary: #d6edf5; --text-secondary: #9ab9c9; --text-muted: #5d8395; --accent: #5eead4; --accent-light: #2dd4bf; --warm: #fbbf24; --warm-light: #fcd34d; --border-color: #2a4250; --shadow: 0 20px 50px rgba(0,0,0,0.40); --accent-glow: rgba(94,234,212,0.16); }
+        body { font-family: 'Manrope', sans-serif; background-color: var(--bg-primary); color: var(--text-primary); transition: background-color 0.4s, color 0.4s; padding-top: 64px; line-height: 1.8; font-size: 16px; }
+        body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 0% 20%, rgba(13,148,136,0.06) 0%, transparent 50%), radial-gradient(circle at 100% 80%, rgba(245,158,11,0.04) 0%, transparent 50%); pointer-events: none; }
+        [data-theme="dark"] body::before { background: radial-gradient(circle at 0% 20%, rgba(94,234,212,0.06) 0%, transparent 50%), radial-gradient(circle at 100% 80%, rgba(251,191,36,0.04) 0%, transparent 50%); }
+        .glass-card { background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid rgba(13,148,136,0.10); box-shadow: var(--shadow); transition: all 0.3s; }
+        .glass-card:hover { border-color: var(--accent-light); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        .theme-icon-dark { display: none; } [data-theme="dark"] .theme-icon-light { display: none; } [data-theme="dark"] .theme-icon-dark { display: block; }
+        .theme-toggle { background: none; border: none; cursor: pointer; padding: 8px; border-radius: 50%; transition: background 0.3s; color: var(--text-secondary); }
+        .theme-toggle:hover { background: rgba(13,148,136,0.10); }
+        .blog-content h2 { font-size: clamp(1.5rem, 2.2vw, 2rem); margin-top: 2.5rem; margin-bottom: 1rem; color: var(--accent); font-weight: 700; letter-spacing: -0.02em; }
+        .blog-content h3 { font-size: clamp(1.2rem, 1.6vw, 1.4rem); margin-top: 1.8rem; margin-bottom: 0.75rem; font-weight: 600; }
+        .blog-content p { margin-bottom: 1.25rem; color: var(--text-secondary); font-size: 1.05rem; }
+        .blog-content ul { margin: 1rem 0 1.5rem 1.8rem; }
+        .blog-content li { margin-bottom: 0.6rem; color: var(--text-secondary); }
+        .blog-content .highlight-box { background: var(--bg-card); border-left: 5px solid var(--accent); padding: 1.2rem 1.8rem; border-radius: 0.5rem; margin: 1.8rem 0; }
+        .blog-content .highlight-box p { margin-bottom: 0; font-size: 1.05rem; }
+        .blog-content img { border-radius: 0.75rem; margin: 1.8rem 0; width: 100%; max-height: 420px; object-fit: cover; box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--bg-primary); } ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; } ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        .logo-text { font-size: clamp(1.1rem, 1.4vw, 1.4rem); line-height: 1.2; font-weight: 700; }
+        .logo-dot { font-size: clamp(1.4rem, 1.8vw, 1.8rem); }
+        .logo-sub { font-size: clamp(0.5rem, 0.6vw, 0.65rem); letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); }
+        .logo-svg { width: clamp(2rem, 2.4vw, 2.5rem); height: clamp(2rem, 2.4vw, 2.5rem); }
+        .author-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+        .progress-bar { position: fixed; top: 64px; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--warm-light)); z-index: 49; transition: width 0.1s; }
+        .footer-simple { border-top: 1px solid var(--border-color); padding: 2rem 0; text-align: center; color: var(--text-muted); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; }
+        .blog-sidebar { position: sticky; top: 84px; }
+        @media (max-width: 1024px) { .blog-sidebar { position: static; } }
+    </style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar" style="width:0%;"></div>
+
+<!-- ===== HEADER ===== -->
+<header class="fixed top-0 w-full z-50 bg-[var(--bg-secondary)]/80 backdrop-blur-xl border-b border-[var(--border-color)]/50 shadow-sm transition-colors duration-300">
+    <div class="flex justify-between items-center h-14 md:h-16 px-4 md:px-16 max-w-7xl mx-auto">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+            <div class="relative flex-shrink-0">
+                <svg class="logo-svg" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+                    <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+                    <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+                    <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+                    <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+                    <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                </svg>
+                <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+            <div class="flex flex-col leading-tight">
+                <span class="logo-text font-bold tracking-tight">
+                    <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                        giang
+                        <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+                    </span>
+                    <span class="logo-dot text-[var(--warm-light)] group-hover:text-[var(--accent)] transition-colors duration-300">.</span>
+                </span>
+                <span class="logo-sub">network & security</span>
+            </div>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium">
+            <a href="index.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span></a>
+            <a href="blog.html" class="text-[var(--accent)] font-bold border-b-2 border-[var(--accent)] py-1">Blog</a>
+            <a href="tags.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">Tags<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span></a>
+            <a href="archives.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">Archives<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span></a>
+            <a href="about.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span></a>
+        </nav>
+
+        <!-- Right -->
+        <div class="flex items-center gap-2 md:gap-3">
+            <button id="theme-toggle" class="theme-toggle p-1.5 md:p-2 rounded-full hover:bg-[var(--border-color)]/30 transition-all" aria-label="Toggle theme">
+                <span class="material-symbols-outlined theme-icon-light text-[var(--text-secondary)] text-xl md:text-2xl">light_mode</span>
+                <span class="material-symbols-outlined theme-icon-dark text-[var(--text-secondary)] text-xl md:text-2xl">dark_mode</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ===== BLOG CONTENT – LAYOUT RỘNG ===== -->
+<main class="px-4 md:px-16 max-w-7xl mx-auto py-8 md:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Main Article – chiếm 9/12 cột -->
+        <article class="lg:col-span-9">
+            <div class="glass-card p-6 md:p-8 lg:p-10 rounded-2xl">
+                <!-- Header -->
+                <div class="mb-6">
+                    <div class="flex items-center gap-3 text-sm text-[var(--text-muted)] uppercase tracking-widest">
+                        <span>Nov 05, 2024</span>
+                        <span class="w-1 h-1 rounded-full bg-[var(--accent)]"></span>
+                        <span class="text-[var(--accent)]">Chia sẻ</span>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mt-3 leading-tight">
+                        Tại sao nên học mạng? – Lý do từ một người đang trên hành trình
+                    </h1>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Network</span>
+                        <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Security</span>
+                        <span class="px-3 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Định hướng</span>
+                    </div>
+                </div>
+
+                <!-- Featured Image -->
+                <img src="./why-network.jpg" alt="Network & Security" class="w-full h-72 md:h-96 object-cover rounded-xl mb-6" />
+
+                <!-- Body -->
+                <div class="blog-content">
+                    <p>
+                        <span class="text-[var(--accent)] font-bold">“Học mạng để làm gì? Ra trường có việc làm không?”</span> 
+                        Đó là câu hỏi mà không chỉ tôi, mà rất nhiều bạn sinh viên ngành Kỹ thuật Máy tính và Điện tử từng đặt ra khi chọn chuyên ngành. Và hôm nay, tôi muốn chia sẻ với các bạn những lý do khiến tôi chọn học mạng, và tại sao tôi tin rằng đây là một trong những hướng đi hấp dẫn nhất trong thời đại số.
+                    </p>
+
+                    <img src="./why-network-2.jpg" alt="Mạng là xương sống" class="w-full h-64 md:h-80 object-cover rounded-xl" />
+
+                    <h2>1. Mạng là xương sống của mọi hệ thống hiện đại</h2>
+                    <p>
+                        Hãy nhìn quanh: từ chiếc điện thoại bạn đang cầm, đến máy chủ của Google, đến hệ thống ngân hàng, y tế, giáo dục – tất cả đều dựa vào mạng. Không có mạng, internet không tồn tại. Không có mạng, dữ liệu không thể di chuyển. Không có mạng, thế giới hiện đại sẽ ngừng hoạt động.
+                    </p>
+                    <div class="highlight-box">
+                        <p class="!text-[var(--text-primary)] font-medium">“Mạng không chỉ là công nghệ, mà là nền tảng của xã hội kết nối.”</p>
+                    </div>
+                    <p>
+                        Khi hiểu được điều đó, tôi nhận ra rằng học mạng không chỉ là học cách cấu hình router, mà là học cách vận hành một phần quan trọng của thế giới. Mỗi gói tin đi qua, mỗi kết nối được thiết lập, đều ẩn chứa những câu chuyện và cơ hội.
+                    </p>
+
+                    <h2>2. Cơ hội nghề nghiệp rất rộng mở</h2>
+                    <p>
+                        Nếu bạn đang lo lắng về đầu ra, tôi có thể nói rằng nhu cầu về kỹ sư mạng và bảo mật chưa bao giờ cao như bây giờ. Từ các tập đoàn công nghệ lớn, đến các ngân hàng, đến các công ty startup, ai cũng cần người quản lý, bảo vệ và tối ưu hóa hệ thống mạng.
+                    </p>
+                    <ul>
+                        <li><strong>Network Engineer / Administrator:</strong> Đảm bảo hạ tầng mạng hoạt động ổn định, thiết kế và triển khai hệ thống mới.</li>
+                        <li><strong>Security Analyst / SOC Specialist:</strong> Giám sát, phát hiện và ứng phó với các mối đe dọa trên mạng.</li>
+                        <li><strong>Cloud Architect:</strong> Xây dựng và quản lý hạ tầng mạng trong môi trường cloud (AWS, Azure, GCP).</li>
+                        <li><strong>Penetration Tester (Ethical Hacker):</strong> Kiểm tra lỗ hổng và bảo vệ hệ thống khỏi tin tặc.</li>
+                        <li><strong>Network Automation Engineer:</strong> Tự động hóa các tác vụ mạng với Python, Ansible, và các công cụ hiện đại.</li>
+                    </ul>
+                    <p>
+                        Đặc biệt, với sự phát triển của IoT, AI, và 5G, nhu cầu về nhân lực mạng càng trở nên cấp thiết. Theo nhiều báo cáo, kỹ sư mạng và bảo mật nằm trong top những ngành có nhu cầu tuyển dụng cao nhất và mức lương hấp dẫn.
+                    </p>
+
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80" alt="Tư duy hệ thống" class="w-full h-64 md:h-80 object-cover rounded-xl" />
+
+                    <h2>3. Học mạng rèn luyện tư duy hệ thống và giải quyết vấn đề</h2>
+                    <p>
+                        Một trong những lý do khiến tôi yêu thích mạng là vì nó dạy tôi cách suy nghĩ có hệ thống. Khi một mạng bị sự cố, bạn không thể chỉ nhìn vào một thiết bị; bạn phải nhìn vào toàn bộ hệ thống: từ switch, router, firewall, đến máy chủ và cả các ứng dụng chạy trên đó. Bạn học cách phân tích, cách đặt giả thuyết, và cách kiểm tra từng giả thuyết một.
+                    </p>
+                    <div class="highlight-box">
+                        <p class="!text-[var(--text-primary)] font-medium">“Mạng dạy bạn logic, sự kiên nhẫn, và cách tư duy như một thám tử.”</p>
+                    </div>
+                    <p>
+                        Tôi đã từng mất cả buổi tối để debug một bài toán định tuyến, và khi cuối cùng tìm ra lỗi, cảm giác chiến thắng thật khó tả. Những trải nghiệm đó không chỉ giúp tôi giỏi hơn trong chuyên môn, mà còn rèn cho tôi tính tỉ mỉ và khả năng làm việc dưới áp lực.
+                    </p>
+
+                    <h2>4. Mạng là cánh cửa để hiểu sâu hơn về bảo mật</h2>
+                    <p>
+                        Nếu bạn muốn theo đuổi bảo mật – và tôi tin rằng đó là một lĩnh vực rất hot – thì bắt đầu từ mạng là một lựa chọn thông minh. Hầu hết các cuộc tấn công mạng đều diễn ra qua giao thức mạng. Hiểu rõ TCP/IP, các loại tấn công (MITM, DDoS, ARP poisoning...), và cách thức bảo vệ, sẽ là nền tảng vững chắc cho bất kỳ ai muốn trở thành chuyên gia an ninh mạng.
+                    </p>
+                    <p>
+                        Tôi may mắn được học và thực hành với các công cụ như Wireshark, Nmap, Metasploit, và pfSense. Những bài lab, những lần mô phỏng tấn công, giúp tôi hiểu rõ hơn về cách tin tặc nghĩ, và từ đó biết cách phòng thủ.
+                    </p>
+
+                    <img src="./why-network-3.jpg" alt="Lab mạng" class="w-full h-64 md:h-80 object-cover rounded-xl" />
+
+                    <h2>5. Học mạng giúp bạn tự tin và độc lập</h2>
+                    <p>
+                        Khi bạn biết cách cấu hình mạng, bạn có thể tự xây dựng hệ thống cho riêng mình. Bạn có thể tạo một mạng gia đình an toàn, một VPN cá nhân, hay thậm chí là một lab ảo để thử nghiệm. Sự chủ động đó mang lại rất nhiều niềm vui và cả sự tự tin.
+                    </p>
+                    <p>
+                        Tôi cũng nhận ra rằng, kiến thức mạng không bao giờ lỗi thời. Có thể công nghệ thay đổi, nhưng những nguyên lý cơ bản (TCP/IP, routing, switching, security) vẫn sẽ còn nguyên giá trị. Đó là một sự đầu tư dài hạn cho tương lai.
+                    </p>
+
+                    <h2>Lời nhắn gửi</h2>
+                    <p>
+                        Nếu bạn đang phân vân chọn chuyên ngành, hoặc đang bắt đầu học mạng và cảm thấy khó khăn, tôi hiểu. Tôi cũng từng cảm thấy choáng ngợp trước những khái niệm trừu tượng, những config dài loằng ngoằng. Nhưng xin hãy kiên trì.
+                    </p>
+                    <p>
+                        Hãy bắt đầu từ những lab nhỏ. Hãy đặt câu hỏi. Hãy tìm bạn để cùng học. Và khi bạn lần đầu tiên ping được đến một địa chỉ IP ở xa, bạn sẽ cảm thấy một niềm vui khó tả. Đó là khoảnh khắc bạn biết mình đã chọn đúng con đường.
+                    </p>
+                    <p>
+                        Tôi tin rằng, dù bạn chọn mạng hay bất kỳ ngành nào, điều quan trọng là bạn phải có đam mê và sự kiên trì. Và mạng, với tôi, không chỉ là một ngành học, mà là một cuộc phiêu lưu mỗi ngày.
+                    </p>
+                </div>
+
+                <!-- Navigation between posts -->
+                <div class="mt-12 pt-6 border-t border-[var(--border-color)]/50 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <a href="index.html" class="text-[var(--accent)] hover:underline font-medium flex items-center gap-2 text-sm">
+                        <span class="material-symbols-outlined">arrow_back</span> Quay lại trang chủ
+                    </a>
+                    <a href="blog1.html" class="text-[var(--accent)] hover:underline font-medium flex items-center gap-2 text-sm">
+                        Bài trước: Nhiệm kỳ BCH <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Sidebar – chiếm 3/12 cột -->
+        <aside class="lg:col-span-3 space-y-6 blog-sidebar">
+            <!-- Author Card -->
+            <div class="glass-card p-5 rounded-2xl text-center">
+                <img src="./av.jpg" alt="Huong Giang" class="author-avatar mx-auto mb-3" />
+                <h4 class="font-bold text-[var(--text-primary)]">Hương Giang</h4>
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-wider">Intern Network & Security</p>
+                <div class="mt-3 flex justify-center gap-3">
+                    <a href="#" class="text-[var(--text-muted)] hover:text-[var(--accent)]"><span class="material-symbols-outlined text-sm">mail</span></a>
+                    <a href="#" class="text-[var(--text-muted)] hover:text-[var(--accent)]"><span class="material-symbols-outlined text-sm">code</span></a>
+                    <a href="#" class="text-[var(--text-muted)] hover:text-[var(--accent)]"><span class="material-symbols-outlined text-sm">chat</span></a>
+                </div>
+            </div>
+
+            <!-- Reading stats -->
+            <div class="glass-card p-4 rounded-2xl space-y-2 text-sm">
+                <div class="flex items-center justify-between text-[var(--text-secondary)]">
+                    <span>⏱️ Thời gian đọc</span>
+                    <span class="font-medium text-[var(--text-primary)]">5 phút</span>
+                </div>
+                <div class="flex items-center justify-between text-[var(--text-secondary)]">
+                    <span>📅 Xuất bản</span>
+                    <span class="font-medium text-[var(--text-primary)]">05/11/2024</span>
+                </div>
+                <div class="flex items-center justify-between text-[var(--text-secondary)]">
+                    <span>🏷️ Chủ đề</span>
+                    <span class="font-medium text-[var(--text-primary)]">Định hướng</span>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="glass-card p-4 rounded-2xl">
+                <h5 class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest mb-3">Thẻ liên quan</h5>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-2 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] text-[var(--text-secondary)]">#Network</span>
+                    <span class="px-2 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] text-[var(--text-secondary)]">#Security</span>
+                    <span class="px-2 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] text-[var(--text-secondary)]">#ĐịnhHướng</span>
+                    <span class="px-2 py-1 rounded-full bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] text-[10px] text-[var(--text-secondary)]">#HọcMạng</span>
+                </div>
+            </div>
+
+            <!-- Recent posts -->
+            <div class="glass-card p-4 rounded-2xl">
+                <h5 class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest mb-3">Bài viết gần đây</h5>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="blog2.html" class="text-[var(--accent)] font-medium">Tại sao nên học mạng?</a></li>
+                    <li><a href="blog1.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">Nhiệm kỳ BCH Khoa KTMT&ĐT</a></li>
+                    <li><a href="blog1.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">Hành trình xây dựng mô hình mạng doanh nghiệp trên PNETLab</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[var(--bg-secondary)] border-t border-[var(--border-color)]/50 transition-colors duration-300 relative">
+        <!-- Decorative gradient line -->
+        <div class="h-1 w-full bg-gradient-to-r from-[var(--accent)] via-[var(--accent-light)] to-[var(--accent)] opacity-30"></div>
+        
+        <div class="px-4 md:px-16 py-10 md:py-12 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+                <!-- Left -->
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+                <div class="relative flex-shrink-0">
+                    <svg class="logo-svg" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+                        <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+                        <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+                        <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    </svg>
+                    <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="logo-text font-bold tracking-tight">
+                        <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                            giang
+                            <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+                        </span>
+                        <span class="logo-dot text-[var(--warm-light)] group-hover:text-[var(--accent)] transition-colors duration-300">.</span>
+                    </span>
+                    <span class="logo-sub font-label-sm text-[var(--text-muted)] uppercase group-hover:text-[var(--accent)] transition-colors duration-300">network & security</span>
+                </div>
+            </a>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mt-4 max-w-xs">
+                        Sinh viên Network & Security, đam mê xây dựng và bảo vệ hệ thống mạng hiện đại.
+                    </p>
+                    <div class="mt-6 flex gap-3">
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">mail</span>
+                        </a>
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">code</span>
+                        </a>
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">chat</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Middle -->
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--accent)] uppercase tracking-widest mb-5 md:mb-6 flex items-center gap-2 border-b border-[var(--border-color)]/50 pb-3">
+                        <span class="material-symbols-outlined text-[var(--accent)] text-base">explore</span>
+                        Khám phá
+                    </h4>
+                    <nav class="space-y-2.5">
+                        <a href="about.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Giới thiệu</a>
+                        <a href="archives.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Lịch sử Internet VN</a>
+                        <a href="blog.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Bài viết</a>
+                        <a href="tags.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Kho tư liệu</a>
+                    </nav>
+                </div>
+
+                <!-- Right -->
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--accent)] uppercase tracking-widest mb-5 md:mb-6 flex items-center gap-2 border-b border-[var(--border-color)]/50 pb-3">
+                        <span class="material-symbols-outlined text-[var(--accent)] text-base">contact_support</span>
+                        Liên hệ
+                    </h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] mt-0.5 flex-shrink-0 text-base">location_on</span>
+                            <div>
+                                <p class="text-[var(--text-secondary)]">523 Mai Đăng Chơn</p>
+                                <p class="text-[var(--text-secondary)]">Đà Nẵng, Việt Nam</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] text-base">phone</span>
+                            <a href="tel:+84837122005" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-medium">(083) 7122005</a>
+                        </div>
+                        <div class="flex items-center gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] text-base">mail</span>
+                            <a href="mailto:trinhthihuonggiang5002@gmail.com" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors text-xs break-all">trinhthihuonggiang5002@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="border-t border-[var(--border-color)]/50 pt-5 md:pt-6 mt-6 md:mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-widest">© 2026 Huong Giang. Network and Security.</p>
+                <div class="flex items-center gap-4 md:gap-6">
+                    <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse shadow-sm shadow-[var(--accent-glow)]"></span>
+                        Online
+                    </span>
+                    <a href="#" class="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Privacy</a>
+                    <a href="#" class="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Terms</a>
+                    <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[12px] text-[var(--accent)]">wifi</span>
+                        Secure
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    toggleBtn.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+    });
+</script>
+</body>
+</html>

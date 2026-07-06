@@ -3,47 +3,41 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Thẻ | SANTO-RYU - Digital Forensic Discovery</title>
+    <title>Thẻ | Huong Giang - Network & Security</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #eef5f7;
+            --bg-primary: #ecf7f9;
             --bg-secondary: #f7fbfc;
-            --bg-card: rgba(248, 252, 253, 0.86);
-            --text-primary: #173040;
-            --text-secondary: #5d7182;
-            --accent: #0f766e;
+            --text-primary: #0b2a35;
+            --text-secondary: #3d5a6b;
+            --text-muted: #7a9aaa;
+            --accent: #0d9488;
             --accent-light: #2dd4bf;
-            --accent-glow: rgba(45, 212, 191, 0.18);
-            --border-color: #d7e4ea;
-            --shadow: 0 16px 45px rgba(15, 23, 42, 0.08);
-            --surface-dim: #dfeafe;
-            --surface-low: #eff4ff;
-            --surface-container: #f1f3f9;
+            --accent-glow: rgba(13, 148, 136, 0.20);
+            --border-color: #c8dce4;
+            --card-bg: rgba(255, 255, 255, 0.88);
+            --shadow: 0 16px 45px rgba(13, 148, 136, 0.10);
             --surface-high: #ebeef5;
-            --surface-highest: #e1e4e9;
         }
 
         [data-theme="dark"] {
-            --bg-primary: #07111f;
-            --bg-secondary: #101928;
-            --bg-card: rgba(11, 19, 38, 0.72);
-            --text-primary: #e8f1ff;
-            --text-secondary: #aebdca;
+            --bg-primary: #08141e;
+            --bg-secondary: #0f1d2a;
+            --text-primary: #d6edf5;
+            --text-secondary: #9ab9c9;
+            --text-muted: #5d8395;
             --accent: #5eead4;
             --accent-light: #2dd4bf;
-            --accent-glow: rgba(94, 234, 212, 0.18);
-            --border-color: #334155;
-            --shadow: 0 16px 45px rgba(2, 6, 23, 0.36);
-            --surface-dim: #0b1326;
-            --surface-low: #131b2e;
-            --surface-container: #171f33;
+            --accent-glow: rgba(94, 234, 212, 0.16);
+            --border-color: #2a4250;
+            --card-bg: rgba(15, 29, 42, 0.88);
+            --shadow: 0 16px 45px rgba(0, 0, 0, 0.40);
             --surface-high: #222a3d;
-            --surface-highest: #2d3449;
         }
 
         html { scroll-behavior: smooth; }
@@ -60,6 +54,22 @@
             font-size: 16px;
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 0% 20%, rgba(13, 148, 136, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 100% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        [data-theme="dark"] body::before {
+            background:
+                radial-gradient(circle at 0% 20%, rgba(94, 234, 212, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 100% 80%, rgba(251, 191, 36, 0.04) 0%, transparent 50%);
+        }
+
         h1, h2, h3, h4 { letter-spacing: -0.02em; }
 
         .hero-title {
@@ -72,7 +82,7 @@
 
         .hero-title .accent-word {
             color: var(--accent-light);
-            text-shadow: 0 0 12px rgba(45, 212, 191, 0.25);
+            text-shadow: 0 0 12px var(--accent-glow);
         }
 
         .hero-description {
@@ -82,21 +92,11 @@
             max-width: 700px;
         }
 
-        .section-kicker {
-            display: inline-block;
-            font-size: 0.76rem;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 0.9rem;
-        }
-
         .glass-card {
-            background: var(--bg-card);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(15, 118, 110, 0.12);
+            border: 1px solid rgba(13, 148, 136, 0.10);
             box-shadow: var(--shadow);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                         box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -108,7 +108,7 @@
         }
 
         [data-theme="dark"] .glass-card {
-            border: 1px solid rgba(94, 234, 212, 0.12);
+            border: 1px solid rgba(94, 234, 212, 0.10);
         }
 
         .glass-card:hover {
@@ -139,7 +139,7 @@
         .glass-card:nth-child(7) { animation-delay: 0.48s; }
 
         .topo-grain {
-            background-image: url("https://www.transparenttextures.com/patterns/pinstriped-suit.png");
+            background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
             opacity: 0.035;
             pointer-events: none;
         }
@@ -157,7 +157,6 @@
         .neon-glow {
             text-shadow: 0 0 8px rgba(45, 212, 191, 0.55);
         }
-
         [data-theme="dark"] .neon-glow {
             text-shadow: 0 0 8px rgba(94, 234, 212, 0.6);
         }
@@ -172,20 +171,17 @@
             cursor: pointer;
             padding: 8px;
             border-radius: 50%;
-            transition: background 0.3s ease, transform 0.3s ease;
+            transition: background 0.3s ease;
+            color: var(--text-secondary);
         }
         .theme-toggle:hover {
-            background: rgba(0, 0, 0, 0.05);
-            transform: rotate(6deg);
-        }
-        [data-theme="dark"] .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(13, 148, 136, 0.10);
         }
 
         .tag-pill {
-            background: rgba(255, 255, 255, 0.68);
+            background: var(--card-bg);
             border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+            box-shadow: var(--shadow);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -219,18 +215,30 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-        }
-        .float-animation {
-            animation: float 4s ease-in-out infinite;
-        }
-
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-primary); }
         ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-light); }
+
+        /* ===== HEADER ===== */
+        .logo-text {
+            font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        .logo-dot {
+            font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+        }
+        .logo-sub {
+            font-size: clamp(0.5rem, 0.6vw, 0.65rem);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .logo-svg {
+            width: clamp(2rem, 2.4vw, 2.5rem);
+            height: clamp(2rem, 2.4vw, 2.5rem);
+        }
 
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -243,71 +251,71 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- ===== HEADER ===== -->
     <header class="fixed top-0 w-full z-50 bg-[var(--bg-secondary)]/80 backdrop-blur-xl border-b border-[var(--border-color)]/50 shadow-sm transition-colors duration-300">
-        <div class="flex justify-between items-center h-16 px-6 md:px-16 max-w-7xl mx-auto">
-                        <a href="index.html" class="flex items-center gap-3 group">
-    <div class="relative">
-        <svg class="w-10 h-10" viewBox="0 0 48 48" fill="none">
-            <!-- Vòng tròn ngoài với hiệu ứng dash -->
-            <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
-            <!-- Vòng tròn thứ 2 -->
-            <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
-            <!-- Vòng tròn thứ 3 -->
-            <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
-            <!-- Chấm trung tâm -->
-            <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
-            <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
-            <!-- Đường kẻ ngang -->
-            <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-            <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-            <!-- Đường kẻ dọc -->
-            <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-            <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
-        </svg>
-        <!-- Glow effect -->
-        <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-    </div>
-    <div class="flex flex-col leading-tight">
-        <span class="font-headline-lg text-2xl md:text-3xl font-bold tracking-tight">
-            <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
-                giang
-                <!-- Underline glow -->
-                <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
-            </span>
-            <span class="text-[var(--accent-light)] group-hover:text-[var(--accent)] transition-colors duration-300 text-3xl md:text-4xl">.</span>
-        </span>
-        <span class="font-label-sm text-[9px] text-[var(--text-secondary)] tracking-[0.3em] uppercase group-hover:text-[var(--accent)] transition-colors duration-300 mt-0.5">network & security</span>
-    </div>
-</a>
-            <nav class="hidden md:flex items-center gap-8 font-body-md text-body-md">
-                <a href="index.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+        <div class="flex justify-between items-center h-14 md:h-16 px-4 md:px-16 max-w-7xl mx-auto">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+                <div class="relative flex-shrink-0">
+                    <svg class="logo-svg" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+                        <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+                        <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+                        <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    </svg>
+                    <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="logo-text font-bold tracking-tight">
+                        <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                            giang
+                            <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+                        </span>
+                        <span class="logo-dot text-[var(--accent-light)] group-hover:text-[var(--accent)] transition-colors duration-300">.</span>
+                    </span>
+                    <span class="logo-sub">network & security</span>
+                </div>
+            </a>
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium">
+                <a href="index.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">
                     Home
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span>
                 </a>
-                <a href="blog.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                <a href="blog.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">
                     Blog
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span>
                 </a>
-                <a href="tags.html" class="text-[var(--accent)] font-bold border-b-2 border-[var(--accent)] py-1 transition-all duration-300">Tags</a>
-                <a href="archives.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                <a href="tags.html" class="text-[var(--accent)] font-bold border-b-2 border-[var(--accent)] py-1">Tags</a>
+                <a href="archives.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">
                     Archives
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span>
                 </a>
-                <a href="about.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 relative group">
+                <a href="about.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all relative group">
                     About
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full"></span>
                 </a>
             </nav>
-            <div class="flex items-center gap-3">
-                <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-[var(--border-color)]/30 transition-all duration-300" aria-label="Toggle theme">
-                    <span class="material-symbols-outlined theme-icon-light text-[var(--text-secondary)]">light_mode</span>
-                    <span class="material-symbols-outlined theme-icon-dark text-[var(--text-secondary)]">dark_mode</span>
+
+            <!-- Right -->
+            <div class="flex items-center gap-2 md:gap-3">
+                <button id="theme-toggle" class="theme-toggle p-1.5 md:p-2 rounded-full hover:bg-[var(--border-color)]/30 transition-all" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined theme-icon-light text-[var(--text-secondary)] text-xl md:text-2xl">light_mode</span>
+                    <span class="material-symbols-outlined theme-icon-dark text-[var(--text-secondary)] text-xl md:text-2xl">dark_mode</span>
                 </button>
             </div>
         </div>
     </header>
-    <main class="relative min-h-screen pb-16 md:pb-20 px-6 md:px-16 max-w-7xl mx-auto">
+
+    <!-- ===== MAIN ===== -->
+    <main class="relative min-h-screen pb-16 md:pb-20 px-4 md:px-16 max-w-7xl mx-auto">
         <!-- Background Decoration -->
         <div class="fixed inset-0 topo-grain -z-10"></div>
 
@@ -318,128 +326,129 @@
                 <div class="h-[1px] flex-grow bg-[var(--border-color)]/30"></div>
             </div>
             <h1 class="hero-title max-w-3xl">
-                Khám Phá <span class="accent-word">Tọa Độ</span> Kiến Thức.
+                Hệ thống <span class="accent-word">kỹ năng</span> &amp; Công cụ
             </h1>
             <p class="hero-description">
-                Hệ thống phân loại các kỹ thuật điều tra số và forensics. Sử dụng các thẻ bên dưới để lọc các báo cáo, nghiên cứu và quy trình kỹ thuật tương ứng.
+                Tổng hợp các lĩnh vực chuyên môn, công cụ và dự án thực tế trong quá trình học tập và thực hành Network &amp; Security.
             </p>
         </section>
 
         <!-- Bento Grid Tags Layout -->
         <div class="content-block grid grid-cols-1 md:grid-cols-12 gap-6">
-            <!-- Category: Malware Analysis - Large -->
+            <!-- Category 1: Mạng & Định tuyến -->
             <div class="md:col-span-8 group">
                 <div class="glass-card h-full p-6 md:p-8 rounded-xl relative overflow-hidden flex flex-col justify-between">
                     <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
-                        <span class="material-symbols-outlined text-[120px]">biotech</span>
+                        <span class="material-symbols-outlined text-[120px]">hub</span>
                     </div>
                     <div>
-                        <div class="font-label-sm text-label-sm text-[var(--accent)] mb-2">COORD: 45.32°N, 122.03°W</div>
-                        <h3 class="font-headline-lg text-headline-lg mb-4 group-hover:text-[var(--accent)] transition-colors">Phân tích mã độc</h3>
-                        <p class="text-[var(--text-secondary)] max-w-md mb-8">Nghiên cứu hành vi, giải mã và bóc tách các loại phần mềm độc hại từ mức độ tệp tin đến bộ nhớ hệ thống.</p>
+                        <div class="font-label-sm text-label-sm text-[var(--accent)] mb-2">COORD: 16.0544°N, 108.2022°E</div>
+                        <h3 class="font-headline-lg text-headline-lg mb-4 group-hover:text-[var(--accent)] transition-colors">Mạng &amp; Định tuyến</h3>
+                        <p class="text-[var(--text-secondary)] max-w-md mb-8">Thiết kế và cấu hình VLAN, OSPF, NAT, DHCP; vận hành nhiều subnet trong môi trường doanh nghiệp trên Packet Tracer và PNETLab.</p>
                     </div>
                     <div class="flex flex-wrap justify-between items-end gap-4">
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-[var(--accent)] font-label-sm text-label-sm">Static</span>
-                            <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-[var(--accent)] font-label-sm text-label-sm">Dynamic</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-[var(--accent)] font-label-sm text-label-sm">VLAN</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-[var(--accent)] font-label-sm text-label-sm">OSPF</span>
+                            <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-[var(--accent)] font-label-sm text-label-sm">NAT</span>
                         </div>
                         <div class="text-right">
-                            <span class="font-display-lg text-display-lg text-[var(--accent-light)] leading-none">24</span>
-                            <span class="font-label-sm text-label-sm text-[var(--text-secondary)] block uppercase tracking-widest">Báo cáo</span>
+                            <span class="font-display-lg text-display-lg text-[var(--accent-light)] leading-none">4</span>
+                            <span class="font-label-sm text-label-sm text-[var(--text-secondary)] block uppercase tracking-widest">Dự án</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Category: Digital Forensics -->
+            <!-- Category 2: Firewall & IDS/IPS -->
             <div class="md:col-span-4 group">
                 <div class="glass-card h-full p-6 md:p-8 rounded-xl flex flex-col justify-between">
                     <div>
-                        <span class="material-symbols-outlined text-[var(--accent-light)] mb-4 text-4xl">fingerprint</span>
-                        <h3 class="font-headline-lg text-headline-lg mb-2">Điều tra số</h3>
-                        <p class="text-[var(--text-secondary)] text-sm">Thu thập và phân tích bằng chứng số trên nhiều nền tảng thiết bị.</p>
+                        <span class="material-symbols-outlined text-[var(--accent-light)] mb-4 text-4xl">security</span>
+                        <h3 class="font-headline-lg text-headline-lg mb-2">Firewall &amp; IDS/IPS</h3>
+                        <p class="text-[var(--text-secondary)] text-sm">Triển khai pfSense Firewall với High Availability (CARP), tích hợp Suricata giám sát traffic bất thường.</p>
                     </div>
                     <div class="pt-6 border-t border-[var(--border-color)]/30 mt-6 flex justify-between items-center">
-                        <span class="font-label-sm text-label-sm uppercase opacity-60 tracking-tighter">Forensics</span>
-                        <span class="font-label-sm text-label-sm text-[var(--accent)] font-bold">18 FILES</span>
+                        <span class="font-label-sm text-label-sm uppercase opacity-60 tracking-tighter">pfSense</span>
+                        <span class="font-label-sm text-label-sm text-[var(--accent)] font-bold">3 PROJECTS</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Category: Data Recovery -->
+            <!-- Category 3: Hạ tầng & Dịch vụ -->
             <div class="md:col-span-4 group">
                 <div class="glass-card h-full p-6 md:p-8 rounded-xl flex flex-col justify-between border-l-4 border-l-[var(--accent)]/30">
                     <div>
-                        <span class="material-symbols-outlined text-[var(--accent-light)] mb-4 text-4xl">settings_backup_restore</span>
-                        <h3 class="font-headline-lg text-headline-lg mb-2">Phục hồi dữ liệu</h3>
-                        <p class="text-[var(--text-secondary)] text-sm">Kỹ thuật cứu hộ dữ liệu từ các thiết bị lưu trữ bị hỏng hoặc bị xóa có chủ đích.</p>
+                        <span class="material-symbols-outlined text-[var(--accent-light)] mb-4 text-4xl">dns</span>
+                        <h3 class="font-headline-lg text-headline-lg mb-2">Hạ tầng &amp; Dịch vụ</h3>
+                        <p class="text-[var(--text-secondary)] text-sm">Cấu hình DNS, DHCP, Active Directory và DNS Forwarding trên Windows Server; quản trị Linux cơ bản.</p>
                     </div>
                     <div class="mt-6">
-                        <div class="text-display-lg font-display-lg text-[var(--accent)]/40 group-hover:text-[var(--accent)] transition-colors">12</div>
+                        <div class="text-display-lg font-display-lg text-[var(--accent)]/40 group-hover:text-[var(--accent)] transition-colors">3</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Category: Reverse Engineering -->
+            <!-- Category 4: Công cụ mô phỏng -->
             <div class="md:col-span-4 group">
                 <div class="glass-card h-full p-6 md:p-8 rounded-xl overflow-hidden relative">
                     <div class="relative z-10">
                         <span class="material-symbols-outlined text-[var(--accent-light)] mb-4 text-4xl">memory</span>
-                        <h3 class="font-headline-lg text-headline-lg mb-2">Kỹ thuật đảo ngược</h3>
-                        <p class="text-[var(--text-secondary)] text-sm">Dịch ngược mã máy, phân tích cấu trúc phần mềm để hiểu rõ cơ chế vận hành.</p>
+                        <h3 class="font-headline-lg text-headline-lg mb-2">Công cụ mô phỏng</h3>
+                        <p class="text-[var(--text-secondary)] text-sm">Thành thạo Packet Tracer, PNETLab, GNS3, VMware để mô phỏng và triển khai hạ tầng mạng.</p>
                     </div>
                     <div class="mt-6 flex items-center gap-4">
                         <div class="w-12 h-1 bg-[var(--accent)]/20 rounded-full overflow-hidden">
-                            <div class="h-full bg-[var(--accent)] w-2/3"></div>
+                            <div class="h-full bg-[var(--accent)] w-4/5"></div>
                         </div>
-                        <span class="font-label-sm text-label-sm text-[var(--text-secondary)]">09 ARCHIVES</span>
+                        <span class="font-label-sm text-label-sm text-[var(--text-secondary)]">05 TOOLS</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Category: OSINT -->
+            <!-- Category 5: Giám sát & Logging -->
             <div class="md:col-span-4 group">
                 <div class="glass-card h-full p-6 md:p-8 rounded-xl bg-[var(--surface-high)]/40">
                     <div class="flex justify-between items-start mb-6">
-                        <span class="material-symbols-outlined text-[var(--accent-light)] text-4xl">public</span>
+                        <span class="material-symbols-outlined text-[var(--accent-light)] text-4xl">monitoring</span>
                         <div class="text-right">
-                            <span class="font-label-sm text-label-sm bg-[var(--text-primary)]/10 px-2 py-1 rounded">GLOBAL</span>
+                            <span class="font-label-sm text-label-sm bg-[var(--text-primary)]/10 px-2 py-1 rounded">STACK</span>
                         </div>
                     </div>
-                    <h3 class="font-headline-lg text-headline-lg mb-2">OSINT</h3>
-                    <p class="text-[var(--text-secondary)] text-sm mb-6">Khai thác và phân tích thông tin từ các nguồn công khai phục vụ điều tra.</p>
+                    <h3 class="font-headline-lg text-headline-lg mb-2">Giám sát &amp; Logging</h3>
+                    <p class="text-[var(--text-secondary)] text-sm mb-6">Thực hành ELK Stack, Grafana, CheckMK để giám sát và phân tích log hệ thống.</p>
                     <div class="flex items-center gap-2 text-[var(--accent)]">
-                        <span class="font-display-lg text-display-lg leading-none">31</span>
-                        <span class="font-label-sm text-label-sm tracking-widest uppercase">Nodes</span>
+                        <span class="font-display-lg text-display-lg leading-none">3</span>
+                        <span class="font-label-sm text-label-sm tracking-widest uppercase">Công cụ</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Category: Cloud Security -->
+            <!-- Category 6: Hoạt động & Kỹ năng mềm -->
             <div class="md:col-span-4 group">
                 <div class="glass-card h-full p-6 md:p-8 rounded-xl flex flex-col justify-between">
                     <div>
-                        <span class="material-symbols-outlined text-[var(--accent-light)] mb-4 text-4xl">cloud</span>
-                        <h3 class="font-headline-lg text-headline-lg mb-2">Bảo mật đám mây</h3>
-                        <p class="text-[var(--text-secondary)] text-sm">Đánh giá lỗ hổng, cấu hình sai và các kỹ thuật tấn công trong môi trường cloud.</p>
+                        <span class="material-symbols-outlined text-[var(--accent-light)] mb-4 text-4xl">diversity_3</span>
+                        <h3 class="font-headline-lg text-headline-lg mb-2">Hoạt động &amp; Kỹ năng mềm</h3>
+                        <p class="text-[var(--text-secondary)] text-sm">Thành viên Ban Chấp hành Khoa KTMT&amp;ĐT, tổ chức sự kiện học thuật, hội thảo và hoạt động ngoại khóa.</p>
                     </div>
                     <div class="pt-6 border-t border-[var(--border-color)]/30 mt-6 flex justify-between items-center">
-                        <span class="font-label-sm text-label-sm uppercase opacity-60 tracking-tighter">CloudSec</span>
-                        <span class="font-label-sm text-label-sm text-[var(--accent)] font-bold">15 FILES</span>
+                        <span class="font-label-sm text-label-sm uppercase opacity-60 tracking-tighter">BCH</span>
+                        <span class="font-label-sm text-label-sm text-[var(--accent)] font-bold">2023-2025</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Category: IoT Security -->
+            <!-- Category 7: Phân tích & Bảo mật -->
             <div class="md:col-span-4 group">
                 <div class="glass-card h-full p-6 md:p-8 rounded-xl flex flex-col justify-between border-r-2 border-r-[var(--accent)]/30">
                     <div>
-                        <span class="material-symbols-outlined text-[var(--accent-light)] mb-4 text-4xl">devices</span>
-                        <h3 class="font-headline-lg text-headline-lg mb-2">Bảo mật IoT</h3>
-                        <p class="text-[var(--text-secondary)] text-sm">Phân tích lỗ hổng trên thiết bị thông minh, giao thức và firmware.</p>
+                        <span class="material-symbols-outlined text-[var(--accent-light)] mb-4 text-4xl">analytics</span>
+                        <h3 class="font-headline-lg text-headline-lg mb-2">Phân tích &amp; Bảo mật</h3>
+                        <p class="text-[var(--text-secondary)] text-sm">Phân tích packet bằng Wireshark, giám sát lưu lượng, phát hiện traffic bất thường và đánh giá lỗ hổng.</p>
                     </div>
                     <div class="mt-6">
-                        <div class="text-display-lg font-display-lg text-[var(--accent)]/40 group-hover:text-[var(--accent)] transition-colors">08</div>
+                        <div class="text-display-lg font-display-lg text-[var(--accent)]/40 group-hover:text-[var(--accent)] transition-colors">4</div>
                     </div>
                 </div>
             </div>
@@ -447,57 +456,112 @@
 
         <!-- Secondary Tags List -->
         <div class="tag-stack mt-12 md:mt-16">
-            <h4 class="font-label-sm text-label-sm text-[var(--text-secondary)] uppercase tracking-[0.3em] mb-6 border-b border-[var(--border-color)]/20 pb-4">Thẻ Phụ / Metadata Tags</h4>
+            <h4 class="font-label-sm text-label-sm text-[var(--text-secondary)] uppercase tracking-[0.3em] mb-6 border-b border-[var(--border-color)]/20 pb-4">Thẻ kỹ năng &amp; Công cụ</h4>
             <div class="flex flex-wrap gap-3">
                 <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
                     <span class="material-symbols-outlined text-sm opacity-60">label</span>
-                    <span class="font-label-sm text-label-sm">Cryptography</span>
-                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">05</span>
+                    <span class="font-label-sm text-label-sm">#Networking</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">6</span>
                 </a>
                 <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
                     <span class="material-symbols-outlined text-sm opacity-60">label</span>
-                    <span class="font-label-sm text-label-sm">Network Traffic</span>
-                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">14</span>
+                    <span class="font-label-sm text-label-sm">#Routing</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">4</span>
                 </a>
                 <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
                     <span class="material-symbols-outlined text-sm opacity-60">label</span>
-                    <span class="font-label-sm text-label-sm">Incident Response</span>
-                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">22</span>
+                    <span class="font-label-sm text-label-sm">#Switching</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">4</span>
                 </a>
                 <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
                     <span class="material-symbols-outlined text-sm opacity-60">label</span>
-                    <span class="font-label-sm text-label-sm">Linux Forensics</span>
-                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">08</span>
+                    <span class="font-label-sm text-label-sm">#Firewall</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">3</span>
                 </a>
                 <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
                     <span class="material-symbols-outlined text-sm opacity-60">label</span>
-                    <span class="font-label-sm text-label-sm">Memory Dumps</span>
-                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">03</span>
+                    <span class="font-label-sm text-label-sm">#IDS/IPS</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">2</span>
                 </a>
                 <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
                     <span class="material-symbols-outlined text-sm opacity-60">label</span>
-                    <span class="font-label-sm text-label-sm">Exploit Research</span>
-                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">11</span>
+                    <span class="font-label-sm text-label-sm">#Suricata</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">2</span>
                 </a>
                 <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
                     <span class="material-symbols-outlined text-sm opacity-60">label</span>
-                    <span class="font-label-sm text-label-sm">Threat Hunting</span>
-                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">09</span>
+                    <span class="font-label-sm text-label-sm">#pfSense</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">3</span>
                 </a>
                 <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
                     <span class="material-symbols-outlined text-sm opacity-60">label</span>
-                    <span class="font-label-sm text-label-sm">Mobile Forensics</span>
-                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">06</span>
+                    <span class="font-label-sm text-label-sm">#WindowsServer</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">3</span>
                 </a>
                 <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
                     <span class="material-symbols-outlined text-sm opacity-60">label</span>
-                    <span class="font-label-sm text-label-sm">Blockchain</span>
-                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">04</span>
+                    <span class="font-label-sm text-label-sm">#ActiveDirectory</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">2</span>
                 </a>
                 <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
                     <span class="material-symbols-outlined text-sm opacity-60">label</span>
-                    <span class="font-label-sm text-label-sm">Red Teaming</span>
-                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">13</span>
+                    <span class="font-label-sm text-label-sm">#Linux</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">4</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#Python</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">2</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#Wireshark</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">4</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#PacketTracer</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">4</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#PNETLab</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">3</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#GNS3</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">2</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#Monitoring</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">3</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#ELK</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">2</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#Grafana</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">2</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#CheckMK</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">1</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#VMware</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">3</span>
+                </a>
+                <a href="#" class="tag-pill px-5 py-2.5 md:px-6 md:py-3 rounded-full flex items-center gap-2 md:gap-3 hover:scale-105 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm opacity-60">label</span>
+                    <span class="font-label-sm text-label-sm">#BCH</span>
+                    <span class="text-[10px] bg-[var(--accent)]/20 text-[var(--accent)] px-1.5 rounded">2</span>
                 </a>
             </div>
         </div>
@@ -509,54 +573,127 @@
                 <h4 class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)]">Tag Cloud</h4>
             </div>
             <div class="flex flex-wrap gap-3 md:gap-4 justify-center">
-                <span class="text-2xl md:text-3xl font-bold text-[var(--accent)] opacity-90 hover:opacity-100 transition-opacity cursor-pointer">#Forensics</span>
-                <span class="text-lg md:text-xl font-bold text-[var(--text-secondary)] opacity-70 hover:opacity-100 transition-opacity cursor-pointer">#Malware</span>
-                <span class="text-3xl md:text-4xl font-bold text-[var(--accent-light)] opacity-90 hover:opacity-100 transition-opacity cursor-pointer">#OSINT</span>
-                <span class="text-base md:text-lg font-bold text-[var(--text-secondary)] opacity-60 hover:opacity-100 transition-opacity cursor-pointer">#Cloud</span>
-                <span class="text-xl md:text-2xl font-bold text-[var(--accent)] opacity-80 hover:opacity-100 transition-opacity cursor-pointer">#IoT</span>
-                <span class="text-2xl md:text-3xl font-bold text-[var(--accent-light)] opacity-90 hover:opacity-100 transition-opacity cursor-pointer">#Reverse</span>
-                <span class="text-base md:text-lg font-bold text-[var(--text-secondary)] opacity-60 hover:opacity-100 transition-opacity cursor-pointer">#Linux</span>
-                <span class="text-xl md:text-2xl font-bold text-[var(--accent)] opacity-80 hover:opacity-100 transition-opacity cursor-pointer">#Network</span>
-                <span class="text-3xl md:text-4xl font-bold text-[var(--accent-light)] opacity-90 hover:opacity-100 transition-opacity cursor-pointer">#Cryptography</span>
-                <span class="text-lg md:text-xl font-bold text-[var(--text-secondary)] opacity-70 hover:opacity-100 transition-opacity cursor-pointer">#Mobile</span>
-                <span class="text-2xl md:text-3xl font-bold text-[var(--accent)] opacity-80 hover:opacity-100 transition-opacity cursor-pointer">#Blockchain</span>
-                <span class="text-base md:text-lg font-bold text-[var(--text-secondary)] opacity-60 hover:opacity-100 transition-opacity cursor-pointer">#RedTeam</span>
+                <span class="text-2xl md:text-3xl font-bold text-[var(--accent)] opacity-90 hover:opacity-100 transition-opacity cursor-pointer">#Networking</span>
+                <span class="text-lg md:text-xl font-bold text-[var(--text-secondary)] opacity-70 hover:opacity-100 transition-opacity cursor-pointer">#Routing</span>
+                <span class="text-3xl md:text-4xl font-bold text-[var(--accent-light)] opacity-90 hover:opacity-100 transition-opacity cursor-pointer">#Firewall</span>
+                <span class="text-base md:text-lg font-bold text-[var(--text-secondary)] opacity-60 hover:opacity-100 transition-opacity cursor-pointer">#IDS/IPS</span>
+                <span class="text-xl md:text-2xl font-bold text-[var(--accent)] opacity-80 hover:opacity-100 transition-opacity cursor-pointer">#pfSense</span>
+                <span class="text-2xl md:text-3xl font-bold text-[var(--accent-light)] opacity-90 hover:opacity-100 transition-opacity cursor-pointer">#Wireshark</span>
+                <span class="text-base md:text-lg font-bold text-[var(--text-secondary)] opacity-60 hover:opacity-100 transition-opacity cursor-pointer">#Suricata</span>
+                <span class="text-xl md:text-2xl font-bold text-[var(--accent)] opacity-80 hover:opacity-100 transition-opacity cursor-pointer">#Linux</span>
+                <span class="text-3xl md:text-4xl font-bold text-[var(--accent-light)] opacity-90 hover:opacity-100 transition-opacity cursor-pointer">#WindowsServer</span>
+                <span class="text-lg md:text-xl font-bold text-[var(--text-secondary)] opacity-70 hover:opacity-100 transition-opacity cursor-pointer">#Python</span>
+                <span class="text-2xl md:text-3xl font-bold text-[var(--accent)] opacity-80 hover:opacity-100 transition-opacity cursor-pointer">#PacketTracer</span>
+                <span class="text-base md:text-lg font-bold text-[var(--text-secondary)] opacity-60 hover:opacity-100 transition-opacity cursor-pointer">#GNS3</span>
+                <span class="text-xl md:text-2xl font-bold text-[var(--accent-light)] opacity-80 hover:opacity-100 transition-opacity cursor-pointer">#Monitoring</span>
+                <span class="text-2xl md:text-3xl font-bold text-[var(--accent)] opacity-80 hover:opacity-100 transition-opacity cursor-pointer">#ELK</span>
+                <span class="text-lg md:text-xl font-bold text-[var(--text-secondary)] opacity-70 hover:opacity-100 transition-opacity cursor-pointer">#Grafana</span>
+                <span class="text-base md:text-lg font-bold text-[var(--text-secondary)] opacity-60 hover:opacity-100 transition-opacity cursor-pointer">#BCH</span>
+                <span class="text-xl md:text-2xl font-bold text-[var(--accent-light)] opacity-80 hover:opacity-100 transition-opacity cursor-pointer">#VMware</span>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="w-full py-12 md:py-16 bg-[var(--bg-secondary)] border-t border-[var(--border-color)]/50 transition-colors duration-300">
-        <div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-16 gap-6 max-w-7xl mx-auto">
-            <div class="text-center md:text-left">
-                <div class="font-headline-lg-mobile text-headline-lg-mobile text-[var(--accent)] mb-2">SANTO-RYU</div>
-                <div class="font-label-sm text-label-sm text-[var(--text-secondary)]">© 2024 SANTO-RYU. Trace the horizon.</div>
-            </div>
-            <div class="flex flex-wrap justify-center gap-6 md:gap-8">
-                <a class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-label-sm text-label-sm opacity-80 hover:opacity-100 relative group" href="#">
-                    GitHub
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-label-sm text-label-sm opacity-80 hover:opacity-100 relative group" href="#">
-                    Twitter
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-label-sm text-label-sm opacity-80 hover:opacity-100 relative group" href="#">
-                    Email
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-label-sm text-label-sm opacity-80 hover:opacity-100 relative group" href="#">
-                    RSS
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="text-right hidden sm:block">
-                    <div class="text-[10px] font-label-sm text-[var(--text-secondary)] uppercase">Network Status</div>
-                    <div class="flex items-center gap-2 text-[var(--accent)]">
-                        <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
-                        <span class="text-xs font-bold uppercase tracking-widest">Encrypted Connection</span>
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[var(--bg-secondary)] border-t border-[var(--border-color)]/50 transition-colors duration-300 relative">
+        <div class="h-1 w-full bg-gradient-to-r from-[var(--accent)] via-[var(--accent-light)] to-[var(--accent)] opacity-30"></div>
+
+        <div class="px-4 md:px-16 py-10 md:py-12 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+                <div class="relative flex-shrink-0">
+                    <svg class="logo-svg" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="22" stroke="var(--accent-light)" stroke-width="1.5" stroke-dasharray="6 4" class="group-hover:rotate-180 transition-transform duration-1000"/>
+                        <circle cx="24" cy="24" r="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.15"/>
+                        <circle cx="24" cy="24" r="10" stroke="var(--accent-light)" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 3"/>
+                        <circle cx="24" cy="24" r="5" fill="var(--accent)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <circle cx="24" cy="24" r="2.5" fill="var(--bg-primary)" class="group-hover:scale-110 transition-transform duration-300"/>
+                        <line x1="6" y1="24" x2="13" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="35" y1="24" x2="42" y2="24" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="6" x2="24" y2="13" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                        <line x1="24" y1="35" x2="24" y2="42" stroke="var(--accent)" stroke-width="1.2" opacity="0.3"/>
+                    </svg>
+                    <div class="absolute inset-0 rounded-full bg-[var(--accent)]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="logo-text font-bold tracking-tight">
+                        <span class="text-[var(--accent)] group-hover:text-[var(--accent-light)] transition-colors duration-300 relative">
+                            giang
+                            <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--accent-light)] group-hover:w-full transition-all duration-500"></span>
+                        </span>
+                        <span class="logo-dot text-[var(--accent-light)] group-hover:text-[var(--accent)] transition-colors duration-300">.</span>
+                    </span>
+                    <span class="logo-sub">network & security</span>
+                </div>
+            </a>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mt-4 max-w-xs">
+                        Sinh viên Network & Security, đam mê xây dựng và bảo vệ hệ thống mạng hiện đại.
+                    </p>
+                    <div class="mt-6 flex gap-3">
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">mail</span>
+                        </a>
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">code</span>
+                        </a>
+                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--accent)]/10 hover:border-[var(--accent)] transition-all group">
+                            <span class="material-symbols-outlined text-[var(--text-secondary)] group-hover:text-[var(--accent)] text-base transition-colors">chat</span>
+                        </a>
                     </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--accent)] uppercase tracking-widest mb-5 md:mb-6 flex items-center gap-2 border-b border-[var(--border-color)]/50 pb-3">
+                        <span class="material-symbols-outlined text-[var(--accent)] text-base">explore</span>
+                        Khám phá
+                    </h4>
+                    <nav class="space-y-2.5">
+                        <a href="about.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Giới thiệu</a>
+                        <a href="archives.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Lịch sử Internet VN</a>
+                        <a href="blog.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Bài viết</a>
+                        <a href="tags.html" class="block text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 pl-3 border-l-2 border-transparent hover:border-[var(--accent)] hover:pl-4">Kho tư liệu</a>
+                    </nav>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-[var(--accent)] uppercase tracking-widest mb-5 md:mb-6 flex items-center gap-2 border-b border-[var(--border-color)]/50 pb-3">
+                        <span class="material-symbols-outlined text-[var(--accent)] text-base">contact_support</span>
+                        Liên hệ
+                    </h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] mt-0.5 flex-shrink-0 text-base">location_on</span>
+                            <div>
+                                <p class="text-[var(--text-secondary)]">523 Mai Đăng Chơn</p>
+                                <p class="text-[var(--text-secondary)]">Đà Nẵng, Việt Nam</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] text-base">phone</span>
+                            <a href="tel:+84837122005" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors font-medium">(083) 7122005</a>
+                        </div>
+                        <div class="flex items-center gap-3 hover:translate-x-1 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-[var(--accent)] text-base">mail</span>
+                            <a href="mailto:trinhthihuonggiang5002@gmail.com" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors text-xs break-all">trinhthihuonggiang5002@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-[var(--border-color)]/50 pt-5 md:pt-6 mt-6 md:mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-widest">© 2026 Huong Giang. Network and Security.</p>
+                <div class="flex items-center gap-4 md:gap-6">
+                    <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse shadow-sm shadow-[var(--accent-glow)]"></span>
+                        Online
+                    </span>
+                    <a href="#" class="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Privacy</a>
+                    <a href="#" class="text-[10px] text-[var(--text-muted)] hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Terms</a>
+                    <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[12px] text-[var(--accent)]">wifi</span>
+                        Secure
+                    </span>
                 </div>
             </div>
         </div>
@@ -571,7 +708,7 @@
         const html = document.documentElement;
         const savedTheme = localStorage.getItem('theme') || 'light';
         html.setAttribute('data-theme', savedTheme);
-        
+
         toggleBtn.addEventListener('click', () => {
             const current = html.getAttribute('data-theme');
             const next = current === 'dark' ? 'light' : 'dark';
